@@ -10,17 +10,11 @@ class Department(models.Model):
         return self.name
 
 class Student(models.Model):
-    STATUS = (
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-    )
     user =models.OneToOneField(User, blank=True, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, null=True)
     surname = models.CharField(max_length=50, null=True)
     num = models.IntegerField(null=True, blank=True)
-    grade = models.IntegerField(null=True, blank=True, choices=STATUS)
+    grade = models.IntegerField(null=True, blank=True)
     profile_pic = models.ImageField(default="ubuntu.jpeg", null=True, blank=True)
     department = models.ManyToManyField(Department)
 

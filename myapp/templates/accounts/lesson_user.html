@@ -1,0 +1,47 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<hr>
+<div class="col-md-8">
+            <h5>{{ request.user }}'s Lessons : {{ notes_count }}</h5>
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="card card-body">
+                            <form method="get">
+
+                                {{ myFilter.form }}
+
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <table class="table table-sm">
+                        <tr>
+                            <th>Lesson Code</th>
+                            <th>Lesson Name</th>
+                            <th>Vise</th>
+                            <th>Final</th>
+                            <th>Make Exam</th>
+                            <th>Letter Grade</th>
+                        </tr>
+
+                        {% for note in notes %}
+                           <tr>
+                                <td>{{ note.lesson.lcode }}</td>
+                                <td>{{ note.lesson.lname }}</td>
+                                <td>{{ note.vise }}</td>
+                                <td>{{ note.final }}</td>
+                                <td>{{ note.mkexam }}</td>
+                                <td>{{ note.lettergrade }}</td>
+                           </tr>
+                        {% endfor %}
+
+                    </table>
+            </div>
+        </div>
+
+{% endblock %}

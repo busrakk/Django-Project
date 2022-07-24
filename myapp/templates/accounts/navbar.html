@@ -24,6 +24,12 @@
         <a class="nav-link" href="{% url 'lessons' %}">Lesson</a>
       </li>
          {% else %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'user-page' %}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'lesson_user' %}">Notes</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'account' %}">Settings</a>
             </li>

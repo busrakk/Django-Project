@@ -132,6 +132,22 @@ def userPage(request):
         }
     return render(request, 'accounts/user.html', context)
 
+login_required(login_url='login')
+@allowed_users(allowed_roles=['student'])
+def lessonUser(request):
+    notes = request.user.student.notes_set.all()
+    notes_count = notes.count()
+
+    myFilter = NotesFilter(request.GET, queryset=notes)
+    notes = myFilter.qs
+
+    context = {
+        'notes':notes,
+        'notes_count':notes_count,
+        'myFilter':myFilter,
+    }
+    return render(request, 'accounts/lesson_user.html', context)
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['student'])

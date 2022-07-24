@@ -1,0 +1,80 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+    <div class="row">
+        <div class="col-md-3">
+                <div class="row">
+                    <div class="col">
+                        <div class="col-md">
+                            <h5 >Information</h5>
+                            <div class="card text-center text-black mb-3" id="total-students">
+                                <div class="card-header">
+                                    <h5 class="card-title">Total Students</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title">{{ total_students }}</h3>
+                                </div>
+                            </div>
+                            <div class="card text-center text-black mb-3" id="total-department">
+                                <div class="card-header">
+                                    <h5 class="card-title">Total Department</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title">{{ total_departments }}</h3>
+                                </div>
+                            </div>
+                            <div class="card text-center text-black mb-3" id="total-department">
+                                <div class="card-header">
+                                    <h5 class="card-title">Total Lesson</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title">{{ total_lesson }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="col-md-7">
+            <h5>Department</h5>
+            <div class="card card-body">
+                <a class="btn btn-primary btn-sm btn-block" href="{% url 'create_department' %}">Create Department</a>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="card card-body">
+                            <form method="get">
+
+                                {{ myFilter.form }}
+
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <table class="table table-sm">
+                    <tr>
+                        <th></th>
+                        <th>Department Name</th>
+                        <th>Update</th>
+                        <th>Remove</th>
+                    </tr>
+
+                    {% for dep in department %}
+                        <tr>
+                            <td><a href="{% url 'department' dep.id %}">View</a></td>
+                            <td>{{dep.name }}</td>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'update_department' dep.id %}">Update</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="{% url 'delete_department' dep.id %}">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

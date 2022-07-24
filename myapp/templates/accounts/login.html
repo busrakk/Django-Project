@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}">
+</head>
+<body>
+    <main>
+        <div class="row">
+            <form method="post" action="">
+            {% csrf_token %}
+                <div class="colm-form">
+                <div class="form-container">
+                    <h1 id="form-title">LOGIN</h1>
+                    <input type="text"  name="username" placeholder="Username...">
+                    <input type="password" name="password" placeholder="Password...">
+                    <button class="btn-login">Login</button>
+
+                    {% for message in messages %}
+                        <p id="messages">{{ message }}</p>
+                    {% endfor %}
+
+                    <a href="{% url 'register' %}">Don't have an account?</a>
+                </div>
+            </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
+
+</body>
+</html>

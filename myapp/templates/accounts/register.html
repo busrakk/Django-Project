@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}">
+</head>
+<body>
+    <main>
+        <div class="row">
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="colm-form">
+                <div class="form-container">
+                    <h1 id="form-title">REGISTER ACCOUNT</h1>
+                    {{ form.username }}
+                    {{ form.email }}
+                    {{ form.password1 }}
+                    {{ form.password2 }}
+                    <button class="btn-login">Register Account</button>
+
+                    {{ form.errors }}
+
+                    <a href="{% url 'login' %}">Already have an account?</a>
+                </div>
+            </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        var form_fields = document.getElementsByTagName('input')
+        form_fields[1].placeholder='Username..';
+        form_fields[2].placeholder='Email..';
+        form_fields[3].placeholder='Enter password..';
+        form_fields[4].placeholder='Re-enter password..';
+
+        for(var field in form_fields){
+            form_fields[field].className += 'form-control'
+        }
+    </script>
+</body>
+</html>
+
+</body>
+</html>

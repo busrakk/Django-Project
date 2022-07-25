@@ -13,8 +13,12 @@ urlpatterns = [
     path('account/', views.accountSettings, name='account'),
 
     path('lessons/', views.lessons, name='lessons'),
+    path('create_lesson/', views.createLesson, name='create_lesson'),
+    path('delete_lesson/<str:pk>/', views.deleteLesson, name='delete_lesson'),
+    path('update_lesson/<str:pk>/', views.updateLesson, name='update_lesson'),
 
     path('students/<str:pk>/', views.students, name='students'),
+    path('create_student/', views.createStudent, name='create_student'),
     path('delete_student/<str:pk>/', views.deleteStudent, name='delete_student'),
     path('update_student/<str:pk>/', views.updateStudent, name='update_student'),
 

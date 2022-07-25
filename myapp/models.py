@@ -32,7 +32,13 @@ class Lesson(models.Model):
 class Notes(models.Model):
     STATUS = (
         ('AA', 'AA'),
+        ('BA', 'BA'),
         ('BB', 'BB'),
+        ('CB', 'CB'),
+        ('CC', 'CC'),
+        ('DC', 'DC'),
+        ('DD', 'DD'),
+        ('FD', 'FD'),
         ('FF', 'FF'),
     )
     student = models.ForeignKey(Student, null=True, on_delete=models.SET_NULL)

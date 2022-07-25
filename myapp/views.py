@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from .models import *
 
-from .forms import NotesForm, StudentForm, DepartmentForm, CreateUserFrom
+from .forms import NotesForm, StudentForm, DepartmentForm, CreateUserFrom, LessonForm
 from .filters import NotesFilter, StudentFilter, DepartmentFilter, LessonFilter
 
 from django.contrib import messages
@@ -95,7 +95,13 @@ def index(request):
     department = myFilter.qs
 
     aa = notes.filter(lettergrade='AA').count()
+    ba = notes.filter(lettergrade='BA').count()
     bb = notes.filter(lettergrade='BB').count()
+    cb = notes.filter(lettergrade='CB').count()
+    cc = notes.filter(lettergrade='CC').count()
+    dc = notes.filter(lettergrade='DC').count()
+    dd = notes.filter(lettergrade='DD').count()
+    fd = notes.filter(lettergrade='FD').count()
     ff = notes.filter(lettergrade='FF').count()
 
     context = {
@@ -106,9 +112,15 @@ def index(request):
         'total_departments':total_departments,
         'total_lesson':total_lesson,
         'myFilter':myFilter,
-        'aa':aa,
-        'bb':bb,
-        'ff':ff,
+        'aa': aa,
+        'ba': ba,
+        'bb': bb,
+        'cb': cb,
+        'cc': cc,
+        'dc': dc,
+        'dd': dd,
+        'fd': fd,
+        'ff': ff,
     }
 
     return render(request, 'accounts/dashboard.html', context)
@@ -120,13 +132,25 @@ def userPage(request):
 
     notes_count = notes.count()
     aa = notes.filter(lettergrade='AA').count()
+    ba = notes.filter(lettergrade='BA').count()
     bb = notes.filter(lettergrade='BB').count()
+    cb = notes.filter(lettergrade='CB').count()
+    cc = notes.filter(lettergrade='CC').count()
+    dc = notes.filter(lettergrade='DC').count()
+    dd = notes.filter(lettergrade='DD').count()
+    fd = notes.filter(lettergrade='FD').count()
     ff = notes.filter(lettergrade='FF').count()
 
     context= {
         'notes':notes,
         'aa': aa,
+        'ba': ba,
         'bb': bb,
+        'cb': cb,
+        'cc': cc,
+        'dc': dc,
+        'dd': dd,
+        'fd': fd,
         'ff': ff,
         'notes_count':notes_count,
         }
@@ -239,9 +263,43 @@ def lessons(request):
     }
     return  render(request, 'accounts/lesson.html', context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def createLesson(request):
+    form = LessonForm()
+    if request.method == 'POST':
+        form = LessonForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {'form':form}
+    return render(request, 'accounts/lesson_form.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def updateLesson(request,pk):
+    lesson = Lesson.objects.get(id=pk)
+    form = LessonForm(instance=lesson)
+
+    if request.method == 'POST':
+        form = LessonForm(request.POST, instance=lesson)
+        if form.is_valid():
+            form.save()
+            return  redirect('lessons')
+    context = {'form':form}
+    return render(request, 'accounts/lesson_form.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def deleteLesson(request, pk):
+    lesson = Lesson.objects.get(id=pk)
+    if request.method == "POST":
+        lesson.delete()
+        return redirect('/')
+    context = {'lesson':lesson}
+    return render(request, 'accounts/lesson_delete.html', context)
 
 #--- student ---
-
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
@@ -250,7 +308,13 @@ def students(request, pk):
     notes = student.notes_set.all()
 
     aa = notes.filter(lettergrade='AA').count()
+    ba = notes.filter(lettergrade='BA').count()
     bb = notes.filter(lettergrade='BB').count()
+    cb = notes.filter(lettergrade='CB').count()
+    cc = notes.filter(lettergrade='CC').count()
+    dc = notes.filter(lettergrade='DC').count()
+    dd = notes.filter(lettergrade='DD').count()
+    fd = notes.filter(lettergrade='FD').count()
     ff = notes.filter(lettergrade='FF').count()
 
     notes_count = notes.count()
@@ -264,12 +328,30 @@ def students(request, pk):
         'notes':notes,
         'department':department,
         'aa': aa,
+        'ba': ba,
         'bb': bb,
+        'cb': cb,
+        'cc': cc,
+        'dc': dc,
+        'dd': dd,
+        'fd': fd,
         'ff': ff,
         'notes_count':notes_count,
         'myFilter':myFilter,
     }
     return  render(request, 'accounts/student.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def createStudent(request):
+    form = StudentForm
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {'form':form}
+    return render(request, 'accounts/student_form.html', context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])

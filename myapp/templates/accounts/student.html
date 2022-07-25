@@ -1,32 +1,36 @@
 {% extends 'accounts/main.html' %}
 
 {% block content %}
+
+    <style>
+        .profile-pic{
+            max-width: 200px;
+            max-height: 200px;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+    </style>
+
     <br>
     <div class="row">
         <div class="col-md-3">
                 <div class="row">
                     <div class="col">
                         <div class="col-md">
-                            <h5 >Information</h5>
-                            <div class="card text-center text-black mb-3" id="total-students">
-                                <div class="card-header">
-                                    <h5 class="card-title">Student Informations</h5>
+                            <h5 >Student Information</h5>
+                            <div class="col-mb-2">
+                                <div class="card card-body">
+                                    <hr>
+                                    <h3 style="text-align: center">{{ student.name }} {{ student.surname }}</h3>
+                                    <hr>
+                                    <img class="profile-pic" src="{{ student.profile_pic.url }}">
                                 </div>
+                            </div>
+                            <div class="card text-center text-black mb-2" id="total-students">
                                 <div class="card-body">
                                     <p>Student Number: {{ student.num }}</p>
                                     <p>Student Name: {{ student.name }}</p>
                                     <p>Student Surname: {{ student.surname }}</p>
-                                </div>
-                            </div>
-                            <div class="card text-center text-black mb-3" id="total-department">
-                                <div class="card-header">
-                                    <h5 class="card-title">Total Notes</h5>
-                                </div>
-                                <div class="card-body">
-                                    <h4>Total Lesson : {{ notes_count }}</h4>
-                                    <p>Total AA : {{ aa }}</p>
-                                    <p>Total BB : {{ bb }}</p>
-                                    <p>Total FF : {{ ff }}</p>
                                 </div>
                             </div>
                         </div>
@@ -34,7 +38,7 @@
                 </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-6">
             <h5>Notes</h5>
             <div class="card card-body">
                 <a class="btn btn-primary btn-sm btn-block" href="{% url 'create_notes' student.id %}">Create Notes</a>
@@ -80,6 +84,32 @@
 
                     </table>
             </div>
+        </div>
+
+        <div class="col-md-3">
+                <div class="row">
+                    <div class="col">
+                        <div class="col-md">
+                            <h5 >Letter Grade Information</h5>
+                            <div class="card text-center text-black md-3" id="total-department">
+                                <div class="card-header">
+                                    <h5 class="card-title">Total Notes {{ notes_count }} </h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>Total AA : {{ aa }}</p>
+                                    <p>Total BB : {{ ba }}</p>
+                                    <p>Total BB : {{ bb }}</p>
+                                    <p>Total BB : {{ cb }}</p>
+                                    <p>Total BB : {{ cc }}</p>
+                                    <p>Total BB : {{ dc }}</p>
+                                    <p>Total BB : {{ dd }}</p>
+                                    <p>Total BB : {{ fd }}</p>
+                                    <p>Total FF : {{ ff }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 

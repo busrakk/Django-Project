@@ -4,10 +4,10 @@
 
     <br>
 
-        <div class="col-md-7">
+        <div class="col-md-8">
             <h5>Lesson : {{ total_lesson }}</h5>
             <div class="card card-body">
-                <a class="btn btn-primary btn-sm btn-block" href="{% url 'create_department' %}">Create Lesson</a>
+                <a class="btn btn-primary btn-sm btn-block" href="{% url 'create_lesson' %}">Create Lesson</a>
                 <hr>
                 <div class="row">
                     <div class="col">
@@ -27,6 +27,8 @@
                         <th>Lesson Code</th>
                         <th>Lesson Name</th>
                         <th>Lesson Credit</th>
+                        <th>Update</th>
+                        <th>Remove</th>
                     </tr>
 
                     {% for i in lessons %}
@@ -34,6 +36,8 @@
                             <td>{{ i.lcode }}</td>
                             <td>{{ i.lname }}</td>
                             <td>{{ i.lcredit }}</td>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'update_lesson' i.id %}">Update</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="{% url 'delete_lesson' i.id %}">Delete</a></td>
                         </tr>
                     {% endfor %}
 

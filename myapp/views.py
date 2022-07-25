@@ -271,7 +271,7 @@ def createLesson(request):
         form = LessonForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('lessons')
     context = {'form':form}
     return render(request, 'accounts/lesson_form.html', context)
 
@@ -295,7 +295,7 @@ def deleteLesson(request, pk):
     lesson = Lesson.objects.get(id=pk)
     if request.method == "POST":
         lesson.delete()
-        return redirect('/')
+        return redirect('lessons')
     context = {'lesson':lesson}
     return render(request, 'accounts/lesson_delete.html', context)
 

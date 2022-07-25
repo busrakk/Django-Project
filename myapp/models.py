@@ -15,7 +15,7 @@ class Student(models.Model):
     surname = models.CharField(max_length=50, null=True)
     num = models.IntegerField(null=True, blank=True)
     grade = models.IntegerField(null=True, blank=True)
-    profile_pic = models.ImageField(default="ubuntu.jpeg", null=True, blank=True)
+    profile_pic = models.ImageField(default="user.jpeg", null=True, blank=True)
     department = models.ManyToManyField(Department)
 
     def __str__(self):

@@ -19,14 +19,14 @@
                         <div class="col-md">
                             <h5 >Student Information</h5>
                             <div class="col-mb-2">
-                                <div class="card card-body">
+                                <div class="card  border-primary mb-3">
                                     <hr>
                                     <h3 style="text-align: center">{{ student.name }} {{ student.surname }}</h3>
                                     <hr>
                                     <img class="profile-pic" src="{{ student.profile_pic.url }}">
                                 </div>
                             </div>
-                            <div class="card text-center text-black mb-2" id="total-students">
+                            <div class="card border-primary mb-3 text-center text-black mb-2" id="total-students">
                                 <div class="card-body">
                                     <p>Student Number: {{ student.num }}</p>
                                     <p>Student Name: {{ student.name }}</p>
@@ -91,7 +91,7 @@
                     <div class="col">
                         <div class="col-md">
                             <h5 >Letter Grade Information</h5>
-                            <div class="card text-center text-black md-3" id="total-department">
+                            <div class="card border-primary mb-3 text-center text-black md-3" id="total-department">
                                 <div class="card-header">
                                     <h5 class="card-title">Total Notes {{ notes_count }} </h5>
                                 </div>

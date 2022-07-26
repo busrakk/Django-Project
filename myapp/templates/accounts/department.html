@@ -3,32 +3,28 @@
 {% block content %}
     <br>
     <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 col-xl-3">
                 <div class="row">
                     <div class="col">
                         <div class="col-md">
                             <h5 >Information</h5>
-                            <div class="card text-center text-black mb-3" id="total-students">
-                                <div class="card-header">
-                                    <h5 class="card-title">Department Name</h5>
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title">{{ department.name }}</h3>
-                                </div>
+                            <div class="card text-center border-info mb-3" style="max-width: 18rem;">
+                                 <div class="card-header">Department Name</div>
+                                 <div class="card-body">
+                                    <h5 class="card-title">{{ department.name }}</h5>
+                                 </div>
                             </div>
-                            <div class="card text-center text-black mb-3" id="total-department">
-                                <div class="card-header">
-                                    <h5 class="card-title">Total Student</h5>
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title">{{ student_count }}</h3>
-                                </div>
+                            <div class="card text-center border-info mb-3" style="max-width: 18rem;">
+                                 <div class="card-header">Total Student</div>
+                                 <div class="card-body">
+                                    <h5 class="card-title">{{ student_count }}</h5>
+                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
                 <h5>Student : {{ student_count }}</h5>
                 <div class="card card-body">
                     <a class="btn btn-primary btn-sm btn-block" href="{% url 'create_student' %}">Create Student</a>

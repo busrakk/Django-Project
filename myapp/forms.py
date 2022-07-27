@@ -10,7 +10,7 @@ class StudentForm(ModelForm):
     class Meta:
         model = Student
         fields = '__all__'
-        exclude = ['user']
+        exclude = ['user', 'department']
 
 class NotesForm(ModelForm):
     class Meta:

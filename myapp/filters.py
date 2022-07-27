@@ -8,7 +8,7 @@ class NotesFilter(django_filters.FilterSet):
     class Meta:
         model = Notes
         fields = '__all__'
-        exclude = ['student',]
+        exclude = ['student']
 
 
 class StudentFilter(django_filters.FilterSet):

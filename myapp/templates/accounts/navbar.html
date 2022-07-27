@@ -21,14 +21,23 @@
         <a class="nav-link" href="{% url 'index' %}">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'lessons' %}">Lesson</a>
+        <a class="nav-link" href="{% url 'dashboard_student' %}">Student</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'dashboard_lesson' %}">Lesson</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'dashboard_notes' %}">Notes</a>
       </li>
          {% else %}
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'user-page' %}">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'lesson_user' %}">Notes</a>
+                <a class="nav-link" href="{% url 'notes_user' %}">Notes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'lesson_user' %}">Lesson</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'account' %}">Settings</a>

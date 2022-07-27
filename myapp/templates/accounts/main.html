@@ -10,7 +10,11 @@
 <body>
     {% include 'accounts/navbar.html' %}
     <div class="container-fluid">
+
     {% block content %}
+        {% block dashboard %}
+
+        {% endblock %}
 
     {% endblock %}
     </div>

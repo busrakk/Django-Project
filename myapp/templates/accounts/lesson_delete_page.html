@@ -1,14 +1,12 @@
 {% extends 'accounts/main.html' %}
 
 {% block content %}
-
+{% include 'accounts/dashboard_l.html' %}
     <br>
 
         <div class="col-md-8">
-            <h5>Lesson : {{ total_lesson }}</h5>
+            <h5>Lesson : {{ lesson_count }}</h5>
             <div class="card card-body">
-                <a class="btn btn-primary btn-sm btn-block" href="{% url 'create_lesson' %}">Create Lesson</a>
-                <hr>
                 <div class="row">
                     <div class="col">
                         <div class="card card-body">
@@ -27,7 +25,6 @@
                         <th>Lesson Code</th>
                         <th>Lesson Name</th>
                         <th>Lesson Credit</th>
-                        <th>Update</th>
                         <th>Remove</th>
                     </tr>
 
@@ -36,7 +33,6 @@
                             <td>{{ i.lcode }}</td>
                             <td>{{ i.lname }}</td>
                             <td>{{ i.lcredit }}</td>
-                            <td><a class="btn btn-sm btn-info" href="{% url 'update_lesson' i.id %}">Update</a></td>
                             <td><a class="btn btn-sm btn-danger" href="{% url 'delete_lesson' i.id %}">Delete</a></td>
                         </tr>
                     {% endfor %}

@@ -1,0 +1,66 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+    {% include 'accounts/dashboard_n.html' %}
+    <style>
+        .profile-pic{
+            max-width: 200px;
+            max-height: 200px;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+    </style>
+
+    <br>
+    <div class="row">
+        <div class="col-md-10">
+            <h5>Notes</h5>
+            <div class="card card-body">
+                <a class="btn btn-primary btn-sm btn-block" href="{% url 'create_notes' %}">Create Notes</a>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="card card-body">
+                            <form method="get">
+
+                                {{ myFilter.form }}
+
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <table class="table table-sm">
+                        <tr>
+                            <th>Student Num</th>
+                            <th>Student Name</th>
+                            <th>Student Surname</th>
+                            <th>Lesson Code</th>
+                            <th>Lesson Name</th>
+                            <th>Vise</th>
+                            <th>Final</th>
+                            <th>Make Exam</th>
+                            <th>Letter Grade</th>
+                        </tr>
+
+                        {% for note in notes %}
+                           <tr>
+                                <td>{{ note.student.num }}</td>
+                                <td>{{ note.student.name }}</td>
+                                <td>{{ note.student.surname }}</td>
+                                <td>{{ note.lesson.lcode }}</td>
+                                <td>{{ note.lesson.lname }}</td>
+                                <td>{{ note.vise }}</td>
+                                <td>{{ note.final }}</td>
+                                <td>{{ note.mkexam }}</td>
+                                <td>{{ note.lettergrade }}</td>
+                           </tr>
+                        {% endfor %}
+
+                    </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

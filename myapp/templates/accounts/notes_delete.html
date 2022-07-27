@@ -1,7 +1,6 @@
 {% extends 'accounts/main.html' %}
 {% load static %}
 {% block content %}
-
 <br>
     <div class="row">
         <div class="col-md-6">
@@ -9,7 +8,7 @@
                 <p>Are you sure you want to delete "{{ notes }}" ?</p>
                 <form action="{% url 'delete_notes' notes.id %}" method="post">
                     {%  csrf_token %}
-                    <a class="btn btn-warning" href="{% url 'index' %}">Cancel</a>
+                    <a class="btn btn-warning" href="{% url 'notes_delete' %}">Cancel</a>
                     <input class="btn btn-danger" type="submit" name="Confirm">
                 </form>
             </div>

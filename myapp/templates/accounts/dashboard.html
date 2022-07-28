@@ -3,32 +3,29 @@
 {% block content %}
 <br>
     <div class="row">
-      <div class="col-sm-2">
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title">Total Students</h5>
-            <p class="card-text">{{ total_students }}</p>
-            <a href="{% url 'dashboard_student' %}" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title">Total Lesson</h5>
-            <p class="card-text">{{ total_lesson }}</p>
-            <a href="{% url 'dashboard_lesson' %}" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-        <div class="col-sm-2">
-            <div class="card text-center">
+      <div class="card-header col-md-4  col-sm-2">
+        <div class="card text-white bg-primary text-center">
+            <div class="card-header">Total Students</div>
               <div class="card-body">
-                <h5 class="card-title">Total Notes</h5>
-                <p class="card-text">{{ total_notes }}</p>
-                <a href="{% url 'dashboard_notes' %}" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-text">{{ total_students }}</h5>
               </div>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div class="card-header col-md-4 col-sm-2">
+        <div class="card text-white bg-secondary text-center">
+            <div class="card-header">Total Lesson</div>
+              <div class="card-body">
+                <h5 class="card-text">{{ total_lesson }}</h5>
+              </div>
+        </div>
+      </div>
+      <div class="card-header col-md-4 col-sm-2">
+        <div class="card text-white bg-info text-center">
+            <div class="card-header">Total Notes</div>
+              <div class="card-body">
+                <h5 class="card-text">{{ total_notes }}</h5>
+              </div>
+        </div>
+      </div>
     </div>
 {% endblock content %}

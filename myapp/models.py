@@ -21,10 +21,27 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
+class Period(models.Model):
+    STATUS = (
+        ('1. Sınıf Güz', '1. Sınıf Güz'),
+        ('1. Sınıf Bahar', '1. Sınıf Bahar'),
+        ('2. Sınıf Güz', '2. Sınıf Güz'),
+        ('2. Sınıf Bahar', '2. Sınıf Bahar'),
+        ('3. Sınıf Güz', '3. Sınıf Güz'),
+        ('3. Sınıf Bahar', '3. Sınıf Bahar'),
+        ('4. Sınıf Güz', '4. Sınıf Güz'),
+        ('4. Sınıf Bahar', '4. Sınıf Bahar'),
+    )
+    name = models.CharField(max_length=20, null=True, choices=STATUS)
+
+    def __str__(self):
+        return self.name
+
 class Lesson(models.Model):
     lcode = models.CharField(blank=True, max_length=50)
     lname = models.CharField(blank=True, max_length=50)
     lcredit = models.IntegerField(blank=True, null=True)
+    period = models.ForeignKey(Period, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.lname

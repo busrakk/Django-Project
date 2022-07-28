@@ -12,7 +12,7 @@ body {
 
 main {
     height: 90vh;
-    width: 100vw;
+    width: 90vw;
     position: relative;
     margin: 0 auto;
 }
@@ -21,6 +21,11 @@ footer {
     height: 10vh;
     background-color: #ffffff;
 }
+
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+
 
 .row {
     display: flex;

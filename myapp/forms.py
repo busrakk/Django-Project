@@ -11,6 +11,18 @@ class StudentForm(ModelForm):
         model = Student
         fields = '__all__'
         exclude = ['user', 'department']
+        labels = {
+            'num': 'Student Number',
+            'name': 'Student Name',
+            'surname': 'Student Surname',
+            'grade' : 'Grade'
+        }
+    widgets = {
+        'num': forms.NumberInput(attrs={'class':'form-control'}),
+        'name': forms.TextInput(attrs={'class':'form-control'}),
+        'surname': forms.TextInput(attrs={'class':'form-control'}),
+        'grade': forms.NumberInput(attrs={'class':'form-control'}),
+    }
 
 class NotesForm(ModelForm):
     class Meta:

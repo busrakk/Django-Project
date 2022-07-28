@@ -1,5 +1,5 @@
 from django.forms import inlineformset_factory
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from django.contrib.auth.forms import UserCreationForm
@@ -7,6 +7,8 @@ from django.contrib.auth.forms import UserCreationForm
 #kimlik doğrulaması için
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
+from django.urls import reverse
+
 from .models import *
 
 from .forms import NotesForm, StudentForm, DepartmentForm, CreateUserFrom, LessonForm
@@ -404,6 +406,67 @@ def student(request):
     }
     return render(request, 'accounts/student_view.html', context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def studentView(request,pk):
+    i = Student.objects.get(id=pk)
+    return HttpResponseRedirect(reverse('student_view'))
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def add(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            new_num = form.cleaned_data['num']
+            new_name = form.cleaned_data['name']
+            new_surname = form.cleaned_data['surname']
+            new_grade = form.cleaned_data['grade']
+
+            new_student = Student(
+                num = new_num,
+                name = new_name,
+                surname = new_surname,
+                grade = new_grade,
+            )
+            new_student.save()
+            return render(request, 'accounts/add.html',{
+                              'form':StudentForm(),
+                              'success':True,
+                          })
+    else:
+        form = StudentForm()
+    return render(request, 'accounts/add.html', {
+         'form':StudentForm
+    })
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def edit(request, pk):
+    if request.method == 'POST':
+        student = Student.objects.get(id=pk)
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return render(request, 'accounts/edit.html',{
+                'form':form,
+                'success':True,
+            })
+    else:
+        student = Student.objects.get(id=pk)
+        form = StudentForm(instance=student)
+    return render(request, 'accounts/edit.html',{
+        'form':form,
+    })
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def delete(request, pk):
+    if request.method == 'POST':
+        student = Student.objects.get(id=pk)
+        student.delete()
+    return HttpResponseRedirect(reverse('student'))
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
@@ -435,7 +498,7 @@ def studentUpdatePage(request):
         'student_count':student_count,
         'myFilter':myFilter,
     }
-    return render(request, 'accounts/student_update_page.html', context)
+    return render(request, 'accounts/student_view.html', context)
 
 
 @login_required(login_url='login')

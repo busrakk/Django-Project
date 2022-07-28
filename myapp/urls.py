@@ -9,6 +9,7 @@ urlpatterns = [
     path('dashboard-student', views.dashboardStudent, name='dashboard_student'),
     path('dashboard-lesson', views.dashboardLesson, name='dashboard_lesson'),
     path('dashboard-notes', views.dashboardNotes, name='dashboard_notes'),
+
     path('', views.index, name='index'),
 
     path('user/', views.userPage, name='user-page'),
@@ -24,6 +25,13 @@ urlpatterns = [
     path('update_lesson/<str:pk>/', views.updateLesson, name='update_lesson'),
 
     path('student/', views.student, name='student'),
+
+    path('<str:pk>', views.studentView, name='student_view'),
+
+    path('add/', views.add, name='add'),
+    path('edit/<str:pk>/', views.edit, name='edit'),
+    path('delete/<str:pk>/', views.delete, name='delete'),
+
     path('student_delete_page', views.studentDeletePage, name='student_delete_page'),
     path('student_update_page', views.studentUpdatePage, name='student_update_page'),
     path('create_student/', views.createStudent, name='create_student'),

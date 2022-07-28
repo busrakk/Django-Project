@@ -1,8 +1,8 @@
 
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-4 text-white min-vh-100">
-                <a href="/" class="d-flex align-items-center pb-4 px-5 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-5 d-none ms-4 d-sm-inline">Menu</span>
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-2 pt-4 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-4 px-1 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none ms-2 d-sm-inline">Management System</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
@@ -22,10 +22,10 @@
                             <i class="bi bi-person"></i> <span class="ms-1 d-none d-sm-inline">Student</span> </a>
                         <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-3"> <span class="d-none text-white d-sm-inline">Student List</span></a>
+                                <a href="{% url 'student' %}" class="nav-link px-3"> <span class="d-none text-white d-sm-inline">Manage Student</span></a>
                             </li>
-                            <li>
-                                <a href="#" class="nav-link px-3"> <span class="d-none text-white d-sm-inline">Manage Student</span></a>
+                            <li class="w-100">
+                                <a href="{% url 'add' %}" class="nav-link px-3"> <span class="d-none text-white d-sm-inline">Add Student</span></a>
                             </li>
                         </ul>
                     </li>
@@ -38,10 +38,10 @@
                             <i class="bi bi-card-list"></i> <span class="ms-1 d-none d-sm-inline">Lesson</span></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-3"> <span class="d-none text-white d-sm-inline">Create Lesson</span></a>
+                                <a href="{% url 'create_lesson' %}" class="nav-link px-3"> <span class="d-none text-white d-sm-inline">Create Lesson</span></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-3"> <span class="d-none text-white d-sm-inline">Manage Lesson</span></a>
+                                <a href="{% url 'lessons' %}" class="nav-link px-3"> <span class="d-none text-white d-sm-inline">Manage Lesson</span></a>
                             </li>
                             <li>
                                 <a href="#" class="nav-link px-3"> <span class="d-none text-white d-sm-inline">Add Lesson Combination</span></a>
@@ -61,7 +61,7 @@
                             <i class="bi bi-calendar2-check"></i> <span class="ms-1 text-white d-none d-sm-inline">Notes</span> </a>
                             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-3"> <span class="d-none text-white d-sm-inline">Add Notes</span></a>
+                                <a href="{% url 'notes' %}" class="nav-link px-3"> <span class="d-none text-white d-sm-inline">Add Notes</span></a>
                             </li>
                             <li>
                                 <a href="#" class="nav-link px-3"> <span class="d-none text-white d-sm-inline">Manage Notes</span></a>

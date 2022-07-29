@@ -1,111 +1,69 @@
-{% extends 'accounts/main.html' %}
 
-{% block content %}
+<!-- ------- iconlar --------------------- -->
 
-    <style>
-        .profile-pic{
-            max-width: 200px;
-            max-height: 200px;
-            margin: 0 auto;
-            border-radius: 50%;
-        }
-    </style>
+<td>
+                                            <button type="button" class="btn me-1" href="" data-bs-toggle="modal" data-bs-target="#myModal{{ lesson.id }}">
+                                                <i class="fa-solid fa-circle-info"></i>
+                                            </button>
 
-    <br>
-    <div class="row">
-        <div class="col-md-3">
-                <div class="row">
-                    <div class="col">
-                        <div class="col-md">
-                            <h5 >Student Information</h5>
-                            <div class="col-mb-2">
-                                <div class="card  border-primary mb-3">
-                                    <hr>
-                                    <h3 style="text-align: center">{{ student.name }} {{ student.surname }}</h3>
-                                    <hr>
-                                    <img class="profile-pic" src="{{ student.profile_pic.url }}">
-                                </div>
-                            </div>
-                            <div class="card border-primary mb-3 text-center text-black mb-2" id="total-students">
-                                <div class="card-body">
-                                    <p>Student Number: {{ student.num }}</p>
-                                    <p>Student Name: {{ student.name }}</p>
-                                    <p>Student Surname: {{ student.surname }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
+                                            <!-- model view student -->
 
-        <div class="col-md-6">
-            <h5>Notes</h5>
-            <div class="card card-body">
-                <div class="row">
-                    <div class="col">
-                        <div class="card card-body">
-                            <form method="get">
+                                            <div class="modal" id="myModal{{ lesson.id }}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                              <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title">Ders : {{ lesson.lname }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true"></span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <ul class="List-unstyled">
+                                                               <li>Ders Kodu: <strong>{{ lesson.lcode }}</strong></li>
+                                                               <li>Ders Adı: <strong>{{ lesson.lname }}</strong></li>
+                                                               <li>Ders Kredisi: <strong>{{ lesson.lcredit }}</strong></li>
+                                                               <li>Ders Dönemi: <strong>{{ lesson.period }}</strong></li>
+                                                    </ul>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Kapat</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
 
-                                {{ myFilter.form }}
+                                            <a class="btn btn me-1" href="">
+                                                <i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
 
-                                <button class="btn btn-primary" type="submit">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <table class="table table-sm">
-                        <tr>
-                            <th>Lesson Code</th>
-                            <th>Lesson Name</th>
-                            <th>Vise</th>
-                            <th>Final</th>
-                            <th>Make Exam</th>
-                            <th>Letter Grade</th>
-                            <th>Update</th>
-                        </tr>
+                                            <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#delete{{ lesson.id }}">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </button>
 
-                        {% for note in notes %}
-                           <tr>
-                                <td>{{ note.lesson.lcode }}</td>
-                                <td>{{ note.lesson.lname }}</td>
-                                <td>{{ note.vise }}</td>
-                                <td>{{ note.final }}</td>
-                                <td>{{ note.mkexam }}</td>
-                                <td>{{ note.lettergrade }}</td>
-                                <td><a class="btn btn-sm btn-info" href="{% url 'update_notes' note.id %}">Update</a></td>
-                           </tr>
-                        {% endfor %}
+                                            <!-- model delete student -->
 
-                    </table>
-            </div>
-        </div>
+                                            <div class="modal" id="delete{{ lesson.id }}" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
+                                              <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title">Ders : {{ lesson.lname }} </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true"></span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <p>Bu dersi silmek istiyor musunuz?</p>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                      <!-- name='delete'-->
+                                                      <form action="" method="post">
+                                                          {% csrf_token %}
+                                                          <input type="submit" class="btn btn-primary" value="Delete">
+                                                      </form>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
 
-        <div class="col-md-3">
-                <div class="row">
-                    <div class="col">
-                        <div class="col-md">
-                            <h5 >Letter Grade Information</h5>
-                            <div class="card border-primary mb-3 text-center text-black md-3" id="total-department">
-                                <div class="card-header">
-                                    <h5 class="card-title">Total Notes {{ notes_count }} </h5>
-                                </div>
-                                <div class="card-body">
-                                    <p>Total AA : {{ aa }}</p>
-                                    <p>Total BB : {{ ba }}</p>
-                                    <p>Total BB : {{ bb }}</p>
-                                    <p>Total BB : {{ cb }}</p>
-                                    <p>Total BB : {{ cc }}</p>
-                                    <p>Total BB : {{ dc }}</p>
-                                    <p>Total BB : {{ dd }}</p>
-                                    <p>Total BB : {{ fd }}</p>
-                                    <p>Total FF : {{ ff }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-    </div>
-
-{% endblock content %}
+                                        </td>

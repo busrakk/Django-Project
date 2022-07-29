@@ -618,24 +618,36 @@ def updateStudent(request,pk):
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
-def notes(request):
-    notes = Notes.objects.all()
-    student = Student.objects.all()
+def notesLesson(request):
+    lessons = Lesson.objects.all()
 
-    notes_count = notes.count()
-    student_count = student.count()
+    lessons_count = lessons.count()
 
-    myFilter = StudentFilter(request.GET, queryset=student)
-    student = myFilter.qs
+    myFilter = LessonFilter(request.GET, queryset=lessons)
+    lessons = myFilter.qs
 
     context = {
-        'student': student,
-        'student_count': student_count,
-        'notes': notes,
-        'notes_count': notes_count,
+        'lessons':lessons,
+        'lessons_count': lessons_count,
         'myFilter': myFilter,
     }
-    return render(request, 'accounts/notes_view.html', context)
+    return render(request, 'accounts/notes_lesson.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def notesStudent(request):
+    students = Student.objects.all()
+    student_count = students.count()
+
+    myFilter = StudentFilter(request.GET, queryset=students)
+    students = myFilter.qs
+
+    context = {
+        'students': students,
+        'student_count':student_count,
+        'myFilter':myFilter,
+    }
+    return render(request, 'accounts/notes_student.html', context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])

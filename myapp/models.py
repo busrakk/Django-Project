@@ -23,14 +23,14 @@ class Student(models.Model):
 
 class Period(models.Model):
     STATUS = (
-        ('1. Sınıf Güz', '1. Sınıf Güz'),
-        ('1. Sınıf Bahar', '1. Sınıf Bahar'),
-        ('2. Sınıf Güz', '2. Sınıf Güz'),
-        ('2. Sınıf Bahar', '2. Sınıf Bahar'),
-        ('3. Sınıf Güz', '3. Sınıf Güz'),
-        ('3. Sınıf Bahar', '3. Sınıf Bahar'),
-        ('4. Sınıf Güz', '4. Sınıf Güz'),
-        ('4. Sınıf Bahar', '4. Sınıf Bahar'),
+        ('sinif1guz', '1. Sınıf Güz'),
+        ('sinif1bahar', '1. Sınıf Bahar'),
+        ('sinif2guz', '2. Sınıf Güz'),
+        ('sinif2bahar', '2. Sınıf Bahar'),
+        ('sinif3guz', '3. Sınıf Güz'),
+        ('sinif3bahar', '3. Sınıf Bahar'),
+        ('sinif4guz', '4. Sınıf Güz'),
+        ('sinif4bahar', '4. Sınıf Bahar'),
     )
     name = models.CharField(max_length=20, null=True, choices=STATUS)
 

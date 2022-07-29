@@ -49,7 +49,9 @@ urlpatterns = [
     #path('delete_department/<str:pk>/', views.deleteDepartment, name='delete_department'),
     #path('update_department/<str:pk>/', views.updateDepartment, name='update_department'),
 
-    path('notes/', views.notes, name='notes'),
+    path('notes_lesson/', views.notesLesson, name='notes_lesson'),
+    path('notes_student/', views.notesStudent, name='notes_student'),
+
     path('notes_create/', views.notesCreate, name='notes_create'),
     path('notes_update/', views.notesUpdate, name='notes_update'),
     path('notes_delete/', views.notesDelete, name='notes_delete'),

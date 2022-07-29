@@ -1,0 +1,87 @@
+{% extends 'accounts/main.html' %}
+{% block content %}
+
+<div class="container-fluid">
+    <h3 class="m-2">Tüm Dersler : {{ lessons_count }}</h3>
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card bg-light ms-3 me-3 mb-3">
+                <div class="card-header">
+                    <div class="col">
+                        <div class="card card-header">
+                            <form method="get">
+
+                                {{ myFilter.form }}
+
+                                <button class="btn btn-primary" type="submit">Arama</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% if lessons %}
+                <div class="card-body m-1">
+                    <p class="card-text">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                        <tr>
+                                        <th scope="col">Ders Kredisi</th>
+                                        <th scope="col">Ders Kodu</th>
+                                        <th scope="col">Ders Adı</th>
+                                        <th scope="col">ACTION</th>
+                                      </tr>
+                                </thead>
+                                <tbody>
+                                   {% for lesson in lessons %}
+                                   <tr>
+                                        <td>{{ lesson.lcredit }}</td>
+                                        <td>{{ lesson.lcode }}</td>
+                                        <td>{{ lesson.lname }}</td>
+                                        <td>
+                                            <button type="button" class="btn me-1" href="" data-bs-toggle="modal" data-bs-target="#myModal{{ lesson.id }}">
+                                                <i class="fa-solid fa-circle-info"></i>
+                                            </button>
+
+                                            <!-- model view student -->
+
+                                            <div class="modal" id="myModal{{ lesson.id }}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                              <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title">Ders : {{ lesson.lname }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true"></span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <ul class="List-unstyled">
+                                                               <li>Ders Kodu: <strong>{{ lesson.lcode }}</strong></li>
+                                                               <li>Ders Adı: <strong>{{ lesson.lname }}</strong></li>
+                                                               <li>Ders Kredisi: <strong>{{ lesson.lcredit }}</strong></li>
+                                                               <li>Ders Dönemi: <strong>{{ lesson.period }}</strong></li>
+                                                    </ul>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Kapat</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </td>
+                                   </tr>
+                                   {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </p>
+                </div>
+            </div>
+                {% else %}
+                    <p></p>
+                    <h5 class="alert alert-primary ms-4 me-4">Ders Kaydı Yok</h5>
+                {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

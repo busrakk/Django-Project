@@ -23,6 +23,7 @@ from .decorators import unauthenticated_user, allowed_users, admin_only
 
 # Create your views here.
 
+# -------------- signup & login ------------
 @unauthenticated_user
 def registerPage(request):
     form = CreateUserFrom()
@@ -79,6 +80,8 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+#----------- dashboard ------------
 
 @login_required(login_url='login')
 @admin_only
@@ -204,6 +207,8 @@ def dashboardLesson(request):
 
     return render(request, 'accounts/dashboard_lesson.html', context)
 
+#------------ User Page ------------
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['student'])
 def userPage(request):
@@ -299,7 +304,7 @@ def accountSettings(request):
     return render(request, 'accounts/account_settings.html', context)
 
 
-#--- lesson ---
+#-------------- lesson ------------
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
@@ -319,6 +324,69 @@ def lessons(request):
         'myFilter':myFilter,
     }
     return  render(request, 'accounts/lesson_view.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def lessonView(request,pk):
+    i = Lesson.objects.get(id=pk)
+    return HttpResponseRedirect(reverse('lesson_view'))
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def lessonAdd(request):
+    if request.method == 'POST':
+        form = LessonForm(request.POST)
+        if form.is_valid():
+            new_code = form.cleaned_data['lcode']
+            new_name = form.cleaned_data['lname']
+            new_credit = form.cleaned_data['lcredit']
+            new_period = form.cleaned_data['period']
+
+            new_lesson = Student(
+                lcode = new_code,
+                lname = new_name,
+                lcredit = new_credit,
+                period = new_period,
+            )
+            new_lesson.save()
+            return render(request, 'accounts/add_lesson.html', {
+                              'form':LessonForm(),
+                              'success':True,
+                          })
+    else:
+        form = LessonForm()
+    return render(request, 'accounts/add_lesson.html', {
+         'form':LessonForm
+    })
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def lessonEdit(request, pk):
+    if request.method == 'POST':
+        lesson = Lesson.objects.get(id=pk)
+        form = LessonForm(request.POST, instance=lesson)
+        if form.is_valid():
+            form.save()
+            return render(request, 'accounts/edit_lesson.html', {
+                'form':form,
+                'success':True,
+            })
+    else:
+        lesson = Lesson.objects.get(id=pk)
+        form = LessonForm(instance=lesson)
+    return render(request, 'accounts/edit_lesson.html', {
+        'form':form,
+    })
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def lessonDelete(request, pk):
+    if request.method == 'POST':
+        lesson = Lesson.objects.get(id=pk)
+        lesson.delete()
+    return HttpResponseRedirect(reverse('lessons'))
+
+#--------------- end of lesson model -------------
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
@@ -410,11 +478,11 @@ def student(request):
 @allowed_users(allowed_roles=['admin'])
 def studentView(request,pk):
     i = Student.objects.get(id=pk)
-    return HttpResponseRedirect(reverse('student_view'))
+    return HttpResponseRedirect(reverse('student'))
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
-def add(request):
+def studentAdd(request):
     if request.method == 'POST':
         form = StudentForm(request.POST)
         if form.is_valid():
@@ -430,43 +498,51 @@ def add(request):
                 grade = new_grade,
             )
             new_student.save()
-            return render(request, 'accounts/add.html',{
+            return render(request, 'accounts/add_student.html', {
                               'form':StudentForm(),
                               'success':True,
                           })
     else:
         form = StudentForm()
-    return render(request, 'accounts/add.html', {
+    return render(request, 'accounts/add_student.html', {
          'form':StudentForm
     })
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
-def edit(request, pk):
+def studentEdit(request, pk):
     if request.method == 'POST':
         student = Student.objects.get(id=pk)
         form = StudentForm(request.POST, instance=student)
         if form.is_valid():
             form.save()
-            return render(request, 'accounts/edit.html',{
+            return render(request, 'accounts/edit_student.html', {
                 'form':form,
                 'success':True,
             })
     else:
         student = Student.objects.get(id=pk)
         form = StudentForm(instance=student)
-    return render(request, 'accounts/edit.html',{
+    return render(request, 'accounts/edit_student.html', {
         'form':form,
     })
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
-def delete(request, pk):
+def studentDelete(request, pk):
     if request.method == 'POST':
         student = Student.objects.get(id=pk)
         student.delete()
     return HttpResponseRedirect(reverse('student'))
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def studentLesson(request,pk):
+    i = Student.objects.get(id=pk)
+    notes = student.notes_set.all()
+    return HttpResponseRedirect(reverse('notes'))
+
+#--------------- end of student model -------------
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])

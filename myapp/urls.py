@@ -18,6 +18,12 @@ urlpatterns = [
     path('account/', views.accountSettings, name='account'),
 
     path('lessons/', views.lessons, name='lessons'),
+
+    path('<str:pk>', views.lessonView, name='lesson_view'),
+    path('lesson_add/', views.lessonAdd, name='lesson_add'),
+    path('lesson_edit/<str:pk>/', views.lessonEdit, name='lesson_edit'),
+    path('lesson_delete/<str:pk>/', views.lessonDelete, name='lesson_delete'),
+
     path('lesson_delete_page', views.lessonDeletePage, name='lesson_delete_page'),
     path('lesson_update_page', views.lessonUpdatePage, name='lesson_update_page'),
     path('create_lesson/', views.createLesson, name='create_lesson'),
@@ -27,10 +33,10 @@ urlpatterns = [
     path('student/', views.student, name='student'),
 
     path('<str:pk>', views.studentView, name='student_view'),
-
-    path('add/', views.add, name='add'),
-    path('edit/<str:pk>/', views.edit, name='edit'),
-    path('delete/<str:pk>/', views.delete, name='delete'),
+    path('student_add/', views.studentAdd, name='student_add'),
+    path('student_edit/<str:pk>/', views.studentEdit, name='student_edit'),
+    path('student_delete/<str:pk>/', views.studentDelete, name='student_delete'),
+    path('<str:pk>', views.studentLesson, name='student_lesson'),
 
     path('student_delete_page', views.studentDeletePage, name='student_delete_page'),
     path('student_update_page', views.studentUpdatePage, name='student_update_page'),

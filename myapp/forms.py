@@ -12,10 +12,10 @@ class StudentForm(ModelForm):
         fields = '__all__'
         exclude = ['user', 'department']
         labels = {
-            'num': 'Student Number',
-            'name': 'Student Name',
-            'surname': 'Student Surname',
-            'grade' : 'Grade'
+            'num': 'Öğrenci Numarası',
+            'name': 'Öğrenci Adı',
+            'surname': 'Öğrenci Soyadı',
+            'grade' : 'Öğrenci Sınıfı'
         }
     widgets = {
         'num': forms.NumberInput(attrs={'class':'form-control'}),
@@ -40,6 +40,18 @@ class LessonForm(ModelForm):
     class Meta:
         model = Lesson
         fields = '__all__'
+        labels = {
+            'lcode': 'Ders Kodu',
+            'lname': 'Ders Adı',
+            'lcredit': 'Ders Kredi',
+            'period': 'Ders Dönemi'
+        }
+        widgets = {
+            'lcode': forms.TextInput(attrs={'class': 'form-control'}),
+            'lname': forms.TextInput(attrs={'class': 'form-control'}),
+            'lcredit': forms.NumberInput(attrs={'class': 'form-control'}),
+            'period': forms.Select(attrs={'class': 'form-control'}),
+        }
 
 
 class CreateUserFrom(UserCreationForm):

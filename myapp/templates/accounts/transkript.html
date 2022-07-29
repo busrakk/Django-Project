@@ -1,10 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <h3 class="m-2">Tüm Öğrenciler : {{ total_students }}</h3>
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card bg-light ms-3 me-3 mb-3">
+                <div class="card-header">
+                    <div class="col">
+                        <div class="card card-header">
+                            <form method="get">
+
+                                {{ myFilter.form }}
+
+                                <button class="btn btn-primary" type="submit">Arama</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% if students %}
+                <div class="card-body m-1">
+                    <p class="card-text">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Öğrenci Numarası</th>
+                                        <th scope="col">Öğrenci Adı</th>
+                                        <th scope="col">Öğrenci Soyadı</th>
+                                        <th scope="col">Öğrenci Sınıfı</th>
+                                        <th scope="col">ACTION</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                   {% for i in students %}
+                                    <tr>
+                                        <td>{{ i.num }}</td>
+                                        <td>{{ i.name }}</td>
+                                        <td>{{ i.surname }}</td>
+                                        <td>{{ i.grade }}</td>
+                                        <td>
+
+                                            <button type="button" class="btn me-1" href="" data-bs-toggle="modal" data-bs-target="#myModal{{ i.id }}">
+                                                <i class="fa-solid fa-file"></i>
+                                            </button>
+
+                                            <!-- model view student -->
+
+                                            <div class="modal" id="myModal{{ i.id }}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                              <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title">İsim : {{ i.name }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true"></span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <ul class="List-unstyled">
+                                                      <li>İsim: <strong>{{ i.na }}</strong></li>
+                                                      <li>Ders Adı: <strong>{{ i.lesson.lname }}</strong></li>
+                                                      <li>Ders Kredisi: <strong>{{ i.lesson.lcredit }}</strong></li>
+                                                      <li>Ders Dönemi: <strong>{{ i.lesson.period }}</strong></li>
+                                                      <li>Ders Dönemi: <strong>{{ i.notes.vise }}</strong></li>
+                                                      <li>Ders Dönemi: <strong>{{ i.notes.final }}</strong></li>
+                                                    </ul>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Kapat</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </p>
+                </div>
+            </div>
+                {% else %}
+                    <p></p>
+                    <h5 class="alert alert-primary ms-4 me-4">Öğrenci Kaydı Yok</h5>
+                {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

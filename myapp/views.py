@@ -20,6 +20,14 @@ from django.contrib.auth.decorators import login_required
 
 from .decorators import unauthenticated_user, allowed_users, admin_only
 
+#-----------------------------------------------------
+
+from io import BytesIO
+from django.template.loader import get_template
+from django.views import View
+from xhtml2pdf import pisa
+
+#------------------------------------------------------
 
 # Create your views here.
 
@@ -950,5 +958,111 @@ def studentNotesCreate(request, pk):
     }
     return  render(request, 'accounts/student_notes_create.html', context)
 
+#------------- Transkript -------------
+
+"""@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def transkript(request):
+    students = Student.objects.all()
+    lessons = Lesson.objects.all()
+    notes = Notes.objects.all()
+
+    total_students = students.count()
+    total_lesson = lessons.count()
+    total_notes = notes.count()
+
+    myFilter = StudentFilter(request.GET, queryset=students)
+    students = myFilter.qs
+
+    aa = notes.filter(lettergrade='AA').count()
+    ba = notes.filter(lettergrade='BA').count()
+    bb = notes.filter(lettergrade='BB').count()
+    cb = notes.filter(lettergrade='CB').count()
+    cc = notes.filter(lettergrade='CC').count()
+    dc = notes.filter(lettergrade='DC').count()
+    dd = notes.filter(lettergrade='DD').count()
+    fd = notes.filter(lettergrade='FD').count()
+    ff = notes.filter(lettergrade='FF').count()
+
+    context = {
+        'students': students,
+        'lessons': lessons,
+        'notes':notes,
+        'total_students': total_students,
+        'total_lesson': total_lesson,
+        'total_notes':total_notes,
+        'myFilter': myFilter,
+        'aa': aa,
+        'ba': ba,
+        'bb': bb,
+        'cb': cb,
+        'cc': cc,
+        'dc': dc,
+        'dd': dd,
+        'fd': fd,
+        'ff': ff,
+    }
+    return render(request, 'accounts/transkript.html', context)"""
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def transkript(request):
+    students = Student.objects.all()
+
+    total_students = students.count()
+
+    myFilter = StudentFilter(request.GET, queryset=students)
+    students = myFilter.qs
+
+    context = {
+        'students': students,
+        'total_students': total_students,
+        'myFilter': myFilter,
+
+    }
+    return render(request, 'accounts/transkript.html', context)
+
+"""@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def transkriptView(request,pk):
+    student = Student.objects.get(id=pk)
+
+    return HttpResponseRedirect(reverse('student_notes_view'))"""
 
 
+def render_to_pdf(template_src, context_dict={}):
+    template = get_template(template_src)
+    html = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return  None
+
+data = {
+    "company":"aaa",
+    "jbbj":"jjbjb"
+}
+
+#opens up page as PDF
+class ViewPDF(View):
+    def get(self, request, *args, **kwargs):
+
+        pdf = render_to_pdf('accounts/transkript_pdf.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')
+
+#Automaticly downloads to pdf PDF file
+class DownloadPDF(View):
+    def get(self, request, *args, **kwargs):
+
+        pdf = render_to_pdf('accounts/transkript_pdf.html', data)
+
+        response = HttpResponse(pdf, content_type='application/pdf')
+        filename = "transkript_%s.pdf" %("12341231")
+        content = "attachment; filename='%s'" %(filename)
+        response['Content-Disposition'] = content
+        return response
+
+def transkript_pdf(request):
+    context = {}
+    return render(request, 'accounts/transkript_pdf.html', context)

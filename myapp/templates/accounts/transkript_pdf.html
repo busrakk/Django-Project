@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md"></div>
+
+            <div class="col-md">
+                <div class="card card-body">
+                    <div class="text-center">
+                        <h3>View Invoices or download directly to PDF</h3>
+                        <p>Turn HTML templates into PDF's with Django + XHTML 2 PDF. This examplegives you the option of
+                        <br> view a template as a PDF or Downloading directly.
+                        </p>
+
+                        <a class="btn btn-info" href="{% url 'pdf_view' %}" target="_blank">View Invoice</a>
+                        <a class="btn btn-info" href="{% url 'pdf_download' %}">Download Invoice</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md"></div>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -47,7 +47,11 @@ class Lesson(models.Model):
         return self.lname
 
 class Notes(models.Model):
-    STATUS = (
+    STATUS1 = (
+        ('gecti', 'Geçti'),
+        ('kaldi', 'Kaldı'),
+    )
+    STATUS2 = (
         ('AA', 'AA'),
         ('BA', 'BA'),
         ('BB', 'BB'),
@@ -63,7 +67,9 @@ class Notes(models.Model):
     vise = models.IntegerField(null=True, blank=True)
     final = models.IntegerField(null=True, blank=True)
     mkexam = models.IntegerField(null=True, blank=True)
-    lettergrade = models.CharField(max_length=2, null=True, choices=STATUS)
+    lettergrade = models.CharField(max_length=2, null=True, choices=STATUS2)
+    ort = models.IntegerField(blank=True, null=True)
+    status = models.CharField(max_length=5, null=True, choices=STATUS1)
 
     def __str__(self):
         return self.lesson.lname

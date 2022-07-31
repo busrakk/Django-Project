@@ -350,7 +350,7 @@ def lessonAdd(request):
             new_credit = form.cleaned_data['lcredit']
             new_period = form.cleaned_data['period']
 
-            new_lesson = Student(
+            new_lesson = Lesson(
                 lcode = new_code,
                 lname = new_name,
                 lcredit = new_credit,
@@ -1058,7 +1058,7 @@ class DownloadPDF(View):
         pdf = render_to_pdf('accounts/transkript_pdf.html', data)
 
         response = HttpResponse(pdf, content_type='application/pdf')
-        filename = "transkript_%s.pdf" %("12341231")
+        filename = 'transkript_%s.pdf' %("12341231")
         content = "attachment; filename='%s'" %(filename)
         response['Content-Disposition'] = content
         return response

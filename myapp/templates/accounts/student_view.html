@@ -1,6 +1,16 @@
-{% extends 'accounts/main.html' %}
 
+{% extends 'accounts/main.html' %}
+{% load static %}
 {% block content %}
+
+    <style>
+        .profile-pic{
+            max-width: 75px;
+            max-height: 75px;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+    </style>
 
 <div class="container-fluid">
     <h3 class="m-2">Tüm Öğrenciler : {{ student_count }}</h3>
@@ -52,14 +62,13 @@
                                               <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                   <div class="modal-header">
-                                                    <h5 class="modal-title">Öğrenci : {{ i.name }} {{ i.surname }}</h5>
+                                                    <h5 class="modal-title"><img class="profile-pic" src="{{ i.profile_pic.url }}">  {{ i.name }} {{ i.surname }}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true"></span>
                                                     </button>
                                                   </div>
                                                   <div class="modal-body">
                                                     <ul class="List-unstyled">
-                                                               <li>Öğrenci Resim: <strong>{{ i.profile_pic.url }}</strong></li>
                                                                <li>Öğrenci Numarası: <strong>{{ i.num }}</strong></li>
                                                                <li>Öğrenci Adı: : <strong>{{ i.name }}</strong></li>
                                                                <li>Öğrenci Soyadı: <strong>{{ i.surname }}</strong></li>

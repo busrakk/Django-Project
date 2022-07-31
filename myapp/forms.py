@@ -40,6 +40,7 @@ class LessonForm(ModelForm):
     class Meta:
         model = Lesson
         fields = '__all__'
+        exclude = ['student']
         labels = {
             'lcode': 'Ders Kodu',
             'lname': 'Ders Adı',

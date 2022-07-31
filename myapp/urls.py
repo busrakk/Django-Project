@@ -23,6 +23,8 @@ urlpatterns = [
     path('lesson_add/', views.lessonAdd, name='lesson_add'),
     path('lesson_edit/<str:pk>/', views.lessonEdit, name='lesson_edit'),
     path('lesson_delete/<str:pk>/', views.lessonDelete, name='lesson_delete'),
+    path('lesson_period/<str:pk>/', views.lessonPeriod, name='lesson_period'),
+    path('lesson_period_edit/<str:pk>/', views.lessonPeriodEdit, name='lesson_period_edit'),
 
     path('lesson_delete_page', views.lessonDeletePage, name='lesson_delete_page'),
     path('lesson_update_page', views.lessonUpdatePage, name='lesson_update_page'),
@@ -71,4 +73,6 @@ urlpatterns = [
     path('transkript_pdf/', views.transkript_pdf, name='transkript_pdf'),
     path('pdf_view/', views.ViewPDF.as_view(), name='pdf_view'),
     path('pdf_download/', views.DownloadPDF.as_view(), name='pdf_download'),
+
+    path('period/', views.period, name='period'),
 ]

@@ -4,106 +4,100 @@
 
     <style>
         .profile-pic{
-            max-width: 200px;
-            max-height: 200px;
+            max-width: 120px;
+            max-height: 120px;
             margin: 0 auto;
             border-radius: 50%;
         }
     </style>
-
     <br>
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
                 <div class="row">
                     <div class="col">
                         <div class="col-md">
-                            <h5 >Student Information</h5>
-                            <div class="col-mb-2">
-                                <div class="card  border-primary mb-3">
-                                    <hr>
-                                    <h3 style="text-align: center">{{ student.name }} {{ student.surname }}</h3>
-                                    <hr>
-                                    <img class="profile-pic" src="{{ student.profile_pic.url }}">
-                                </div>
-                            </div>
-                            <div class="card border-primary mb-3 text-center text-black mb-1" id="total-students">
-                                <div class="card-body">
-                                    <p>Student Number: {{ student.num }}</p>
-                                    <p>Student Name: {{ student.name }}</p>
-                                    <p>Student Surname: {{ student.surname }}</p>
-                                </div>
+                            <p></p>
+                            <div class="card mb-3">
+                              <h3 class="card-header">{{ student.name }} {{ student.surname }}</h3>
+                                <p></p>
+                              <img class="profile-pic" src="{{ student.profile_pic.url }}">
+                              <div class="card-body">
+                                  <table class="table table-hover">
+                                    <thead>
+                                        <tr class="table-active">
+                                          <th scope="row">Öğrenci Numarası: </th>
+                                          <td>{{ student.num }}</td>
+                                        </tr>
+                                        <tr class="table-active">
+                                          <th scope="row">Öğrenci Adı: </th>
+                                          <td>{{ student.name }}</td>
+                                        </tr>
+                                        <tr class="table-active">
+                                          <th scope="row">Öğrenci Soyadı: </th>
+                                          <td>{{ student.surname }}</td>
+                                        </tr>
+                                    </thead>
+                                  </table>
+                              </div>
                             </div>
                         </div>
                     </div>
                 </div>
         </div>
 
-        <div class="col-md-6">
-            <h5>Notes</h5>
-            <div class="card card-body">
-                <div class="row">
+        <div class="col-md-9">
+        <p></p>
+          <div class="card bg-light ms-3 me-3 mb-3">
+                <div class="card-header">
                     <div class="col">
-                        <div class="card card-body">
+                        <div class="card card-header">
                             <form method="get">
 
                                 {{ myFilter.form }}
 
-                                <button class="btn btn-primary" type="submit">Search</button>
+                                <button class="btn btn-primary" type="submit">Arama</button>
                             </form>
                         </div>
                     </div>
                 </div>
-                <br>
-                <table class="table table-sm">
-                        <tr>
-                            <th>Lesson Code</th>
-                            <th>Lesson Name</th>
-                            <th>Vise</th>
-                            <th>Final</th>
-                            <th>Make Exam</th>
-                            <th>Letter Grade</th>
-                        </tr>
-
-                        {% for note in notes %}
-                           <tr>
-                                <td>{{ note.lesson.lcode }}</td>
-                                <td>{{ note.lesson.lname }}</td>
-                                <td>{{ note.vise }}</td>
-                                <td>{{ note.final }}</td>
-                                <td>{{ note.mkexam }}</td>
-                                <td>{{ note.lettergrade }}</td>
-                           </tr>
-                        {% endfor %}
-
-                    </table>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-                <div class="row">
-                    <div class="col">
-                        <div class="col-md">
-                            <h5 >Letter Grade Information</h5>
-                            <div class="card border-primary mb-3 text-center text-black md-3" id="total-department">
-                                <div class="card-header">
-                                    <h5 class="card-title">Total Notes {{ notes_count }} </h5>
-                                </div>
-                                <div class="card-body">
-                                    <p>Total AA : {{ aa }}</p>
-                                    <p>Total BB : {{ ba }}</p>
-                                    <p>Total BB : {{ bb }}</p>
-                                    <p>Total BB : {{ cb }}</p>
-                                    <p>Total BB : {{ cc }}</p>
-                                    <p>Total BB : {{ dc }}</p>
-                                    <p>Total BB : {{ dd }}</p>
-                                    <p>Total BB : {{ fd }}</p>
-                                    <p>Total FF : {{ ff }}</p>
-                                </div>
-                            </div>
+          {% if notes %}
+                <div class="card-body m-1">
+                    <p class="card-text">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Lesson Code</th>
+                                        <th scope="col">Lesson Name</th>
+                                        <th scope="col">Vise</th>
+                                        <th scope="col">Final</th>
+                                        <th scope="col">Make Exam</th>
+                                        <th scope="col">Letter Grade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for note in notes %}
+                                   <tr>
+                                        <td>{{ note.lesson.lcode }}</td>
+                                        <td>{{ note.lesson.lname }}</td>
+                                        <td>{{ note.vise }}</td>
+                                        <td>{{ note.final }}</td>
+                                        <td>{{ note.mkexam }}</td>
+                                        <td>{{ note.lettergrade }}</td>
+                                   </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
+                    </p>
                 </div>
+            </div>
+                {% else %}
+                    <p></p>
+                    <h5 class="alert alert-primary ms-4 me-4">Öğrenci Kaydı Yok</h5>
+                {% endif %}
         </div>
     </div>
-
+</div>
 {% endblock content %}

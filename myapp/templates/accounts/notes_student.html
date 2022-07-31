@@ -1,6 +1,15 @@
 {% extends 'accounts/main.html' %}
-
+{% load static %}
 {% block content %}
+
+    <style>
+        .profile-pic{
+            max-width: 75px;
+            max-height: 75px;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+    </style>
 
 <div class="container-fluid">
     <h3 class="m-2">Tüm Öğrenciler : {{ student_count }}</h3>
@@ -42,6 +51,35 @@
                                         <td>{{ i.surname }}</td>
                                         <td>{{ i.grade }}</td>
                                         <td>
+                                            <button type="button" class="btn me-1" href="{% url 'student_notes_view' i.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{ i.id }}">
+                                                <i class="fa-solid fa-circle-info"></i>
+                                            </button>
+
+                                            <!-- model view student -->
+
+                                            <div class="modal" id="myModal{{ i.id }}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                              <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title"><img class="profile-pic" src="{{ i.profile_pic.url }}">  {{ i.name }} {{ i.surname }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true"></span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <ul class="List-unstyled">
+                                                               <li>Öğrenci Numarası: <strong>{{ i.note.lesson }}</strong></li>
+                                                               <li>Öğrenci Adı: : <strong>{{ i.note.vise }}</strong></li>
+                                                               <li>Öğrenci Soyadı: <strong>{{ i.surname }}</strong></li>
+                                                               <li>Öğrenci Sınıfı: <strong>{{ i.grade }}</strong></li>
+                                                    </ul>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Kapat</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
 
                                             <a class="btn btn me-1" href="{% url 'student_notes_view' i.id %}">
                                                 <i class="fa-solid fa-chalkboard-user"></i>

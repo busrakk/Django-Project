@@ -36,10 +36,13 @@ class LessonFilter(django_filters.FilterSet):
 
     class Meta:
         model = Lesson
-        fields = '__all__'
+        fields = ['period']
         labels = {
-            'lcode': 'Ders Kodu',
-            'lname': 'Ders Adı',
-            'lcredit': 'Ders Kredi',
             'period': 'Ders Dönemi'
         }
+
+class PeriodFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Period
+        fields = ['name']

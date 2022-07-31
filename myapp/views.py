@@ -12,7 +12,7 @@ from django.urls import reverse
 from .models import *
 
 from .forms import NotesForm, StudentForm, DepartmentForm, CreateUserFrom, LessonForm
-from .filters import NotesFilter, StudentFilter, DepartmentFilter, LessonFilter
+from .filters import NotesFilter, StudentFilter, DepartmentFilter, LessonFilter, PeriodFilter
 
 from django.contrib import messages
 
@@ -314,6 +314,7 @@ def accountSettings(request):
 
 #-------------- lesson ------------
 
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def lessons(request):
@@ -337,7 +338,8 @@ def lessons(request):
 @allowed_users(allowed_roles=['admin'])
 def lessonView(request,pk):
     i = Lesson.objects.get(id=pk)
-    return HttpResponseRedirect(reverse('lesson_view'))
+    return HttpResponseRedirect(reverse('lessons'))
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
@@ -393,6 +395,40 @@ def lessonDelete(request, pk):
         lesson = Lesson.objects.get(id=pk)
         lesson.delete()
     return HttpResponseRedirect(reverse('lessons'))
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def lessonPeriod(request, pk):
+    lesson = Lesson.objects.get(id=pk)
+    lessons = lesson.student.all()
+    notes = lesson.notes_set.all()
+
+    context = {
+        'lessons':lessons,
+        'lesson':lesson,
+        'notes':notes,
+    }
+    return render(request, 'accounts/lesson_period.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def lessonPeriodEdit(request, pk):
+    if request.method == 'POST':
+        notes = Notes.objects.get(id=pk)
+        form = NotesForm(request.POST, instance=notes)
+        if form.is_valid():
+            form.save()
+            return render(request, 'accounts/lesson_period_edit.html', {
+                'form':form,
+                'success':True,
+            })
+    else:
+        notes = Notes.objects.get(id=pk)
+        form = NotesForm(instance=notes)
+    return render(request, 'accounts/lesson_period_edit.html', {
+        'form':form,
+    })
 
 #--------------- end of lesson model -------------
 
@@ -628,7 +664,6 @@ def updateStudent(request,pk):
 @allowed_users(allowed_roles=['admin'])
 def notesLesson(request):
     lessons = Lesson.objects.all()
-
     lessons_count = lessons.count()
 
     myFilter = LessonFilter(request.GET, queryset=lessons)
@@ -1066,3 +1101,23 @@ class DownloadPDF(View):
 def transkript_pdf(request):
     context = {}
     return render(request, 'accounts/transkript_pdf.html', context)
+
+
+#----------------- period --------------------
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def period(request):
+    period = Period.objects.all()
+    lesson = Lesson.objects.all()
+
+    myFilter = LessonFilter(request.GET, queryset=period)
+    period = myFilter.qs
+
+
+    context = {
+        'period':period,
+        'lesson':lesson,
+        'myFilter':myFilter,
+    }
+    return  render(request, 'accounts/period.html', context)

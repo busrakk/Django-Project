@@ -1,0 +1,103 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+    <style>
+        .profile-pic{
+            max-width: 120px;
+            max-height: 120px;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+    </style>
+    <br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9">
+        <p></p>
+          <div class="card bg-light ms-3 me-3 mb-3">
+                <div class="card-header">
+                    <div class="col">
+                        <div class="card card-header">
+                            <form method="get">
+
+                                {{ myFilter.form }}
+
+                                <button class="btn btn-primary" type="submit">Arama</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+          {% if lessons %}
+                <div class="card-body m-1">
+                    <p class="card-text">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Öğrenci Adı</th>
+                                        <th scope="col">Öğrenci Soyadı</th>
+                                        <th scope="col">Vize</th>
+                                        <th scope="col">Final</th>
+                                        <th scope="col">Büt</th>
+                                        <th scope="col">Harf Notu</th>
+                                        <th scope="col">Ortalama</th>
+                                        <th scope="col">Durum</th>
+                                        <th scope="col">ACTION</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% if lessons %}
+                                    {% if notes %}
+                                        {% for note in notes %}
+                                           <tr>
+                                                <td>{{ note.student.name }}</td>
+                                                <td>{{ note.student.surname }}</td>
+                                                <td>{{ note.vise }}</td>
+                                                <td>{{ note.final }}</td>
+                                                <td>{{ note.mkexam }}</td>
+                                                <td>{{ note.lettergrade }}</td>
+                                                <td>{{ note.ort }}</td>
+                                                <td>{{ note.status }}</td>
+                                                <td>
+                                                    <a class="btn btn me-1" href="{% url 'lesson_period_edit' note.id %}">
+                                                <i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
+                                                </td>
+                                           </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        {% for note in lessons %}
+                                            <tr>
+                                                <td>{{ note.name }}</td>
+                                                <td>{{ note.surname }}</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>
+                                                    <a class="btn btn me-1" href="{% url 'lesson_period_edit' note.id %}">
+                                                <i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </p>
+                </div>
+            </div>
+                {% else %}
+                    <p></p>
+                    <h5 class="alert alert-primary ms-4 me-4">Öğrenci Kaydı Yok</h5>
+                {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

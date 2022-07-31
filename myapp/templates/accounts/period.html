@@ -1,0 +1,80 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" data-bs-toggle="tab" href="#donem1" aria-selected="true" role="tab">1. Sınıf Güz</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" data-bs-toggle="tab" href="#donem2" aria-selected="false" role="tab" tabindex="-1">1. Sınıf Bahar</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" data-bs-toggle="tab" href="#donem3" aria-selected="false" role="tab" tabindex="-1">2. Sınıf Güz</a>
+        </li>
+    <li class="nav-item" role="presentation">
+          <a class="nav-link" data-bs-toggle="tab" href="#donem4" aria-selected="false" role="tab" tabindex="-1">2. Sınıf Bahar</a>
+        </li>
+    <li class="nav-item" role="presentation">
+          <a class="nav-link" data-bs-toggle="tab" href="#donem5" aria-selected="false" role="tab" tabindex="-1">3. Sınıf Güz</a>
+        </li>
+    <li class="nav-item" role="presentation">
+          <a class="nav-link" data-bs-toggle="tab" href="#donem6" aria-selected="false" role="tab" tabindex="-1">3. Sınıf Bahar</a>
+        </li>
+    <li class="nav-item" role="presentation">
+          <a class="nav-link" data-bs-toggle="tab" href="#donem7" aria-selected="false" role="tab" tabindex="-1">4. Sınıf Güz</a>
+        </li>
+    <li class="nav-item" role="presentation">
+          <a class="nav-link" data-bs-toggle="tab" href="#donem8" aria-selected="false" role="tab" tabindex="-1">4. Sınıf Bahar</a>
+        </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade show active" id="donem1" role="tabpanel">
+
+                <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Ders Kodu</th>
+                                        <th scope="col">Ders Adı</th>
+                                        <th scope="col">Ders Kredisi</th>
+                                        <th scope="col">Ders Dönemi</th>
+                                        <th scope="col">ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   {% for i in lesson %}
+                                    <tr>
+                                        <td>{{ i.lcode }}</td>
+                                        <td>{{ i.lname }}</td>
+                                        <td>{{ i.lcredit }}</td>
+                                        <td>{{ i.period }}</td>
+                                    </tr>
+                                </tbody>
+                                    {% endfor %}
+                </table>
+
+      </div>
+      <div class="tab-pane fade" id="donem2" role="tabpanel">
+          <p>2. dönem</p>
+      </div>
+      <div class="tab-pane fade" id="donem3" role="tabpanel">
+         <p>3. dönem</p>
+      </div>
+      <div class="tab-pane fade" id="donem4" role="tabpanel">
+         <p>4. dönem</p>
+      </div>
+      <div class="tab-pane fade" id="donem5" role="tabpanel">
+         <p>5. dönem</p>
+      </div>
+      <div class="tab-pane fade" id="donem6" role="tabpanel">
+          <p>6. dönem</p>
+      </div>
+      <div class="tab-pane fade" id="donem7" role="tabpanel">
+         <p>7. dönem</p>
+      </div>
+      <div class="tab-pane fade" id="donem8" role="tabpanel">
+         <p>8. dönem</p>
+      </div>
+
+</div>
+{% endblock content %}

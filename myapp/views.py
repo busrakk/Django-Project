@@ -403,11 +403,16 @@ def lessonPeriod(request, pk):
     lesson = Lesson.objects.get(id=pk)
     lessons = lesson.student.all()
     notes = lesson.notes_set.all()
+    notess = Notes.objects.all()
+
+    myFilter = NotesFilter(request.GET, queryset=notess)
+    notess = myFilter.qs
 
     context = {
         'lessons':lessons,
         'lesson':lesson,
         'notes':notes,
+        'notess':notess,
     }
     return render(request, 'accounts/lesson_period.html', context)
 
@@ -428,6 +433,34 @@ def lessonPeriodEdit(request, pk):
         form = NotesForm(instance=notes)
     return render(request, 'accounts/lesson_period_edit.html', {
         'form':form,
+    })
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def lessonPeriodAdd(request):
+    if request.method == 'POST':
+        form = NotesForm(request.POST)
+        if form.is_valid():
+            new_vise = form.cleaned_data['vise']
+            new_final = form.cleaned_data['final']
+            new_mkexam = form.cleaned_data['mkexam']
+            new_lettergrade = form.cleaned_data['lettergrade']
+
+            new_note = Notes(
+                vise = new_vise,
+                final = new_final,
+                mkexam = new_mkexam,
+                lettergrade = new_lettergrade,
+            )
+            new_note.save()
+            return render(request, 'accounts/add_notes.html', {
+                              'form':NotesForm(),
+                              'success':True,
+                          })
+    else:
+        form = NotesForm()
+    return render(request, 'accounts/add_notes.html', {
+         'form':NotesForm
     })
 
 #--------------- end of lesson model -------------

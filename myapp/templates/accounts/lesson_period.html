@@ -80,8 +80,12 @@
                                                 <td>-</td>
                                                 <td>
                                                     <a class="btn btn me-1" href="{% url 'lesson_period_edit' note.id %}">
-                                                <i class="fa-regular fa-pen-to-square"></i>
-                                            </a>
+                                                        <i class="fa-regular fa-pen-to-square"></i>
+                                                    </a>
+
+                                                    <a class="btn btn me-1" href="{% url 'lesson_period_add' %}">
+                                                        <i class="fa-solid fa-file-pen"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         {% endfor %}

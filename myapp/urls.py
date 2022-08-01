@@ -25,6 +25,7 @@ urlpatterns = [
     path('lesson_delete/<str:pk>/', views.lessonDelete, name='lesson_delete'),
     path('lesson_period/<str:pk>/', views.lessonPeriod, name='lesson_period'),
     path('lesson_period_edit/<str:pk>/', views.lessonPeriodEdit, name='lesson_period_edit'),
+    path('lesson_period_add/', views.lessonPeriodAdd, name='lesson_period_add'),
 
     path('lesson_delete_page', views.lessonDeletePage, name='lesson_delete_page'),
     path('lesson_update_page', views.lessonUpdatePage, name='lesson_update_page'),

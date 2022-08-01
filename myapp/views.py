@@ -338,7 +338,7 @@ def lessons(request):
 @allowed_users(allowed_roles=['admin'])
 def lessonView(request,pk):
     i = Lesson.objects.get(id=pk)
-    return HttpResponseRedirect(reverse('lessons'))
+    return HttpResponseRedirect(reverse('period'))
 
 
 @login_required(login_url='login')
@@ -394,7 +394,7 @@ def lessonDelete(request, pk):
     if request.method == 'POST':
         lesson = Lesson.objects.get(id=pk)
         lesson.delete()
-    return HttpResponseRedirect(reverse('lessons'))
+    return HttpResponseRedirect(reverse('period'))
 
 
 @login_required(login_url='login')
@@ -1090,6 +1090,23 @@ def transkript(request):
     }
     return render(request, 'accounts/transkript.html', context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def studentTranskript(request, pk):
+    student = Student.objects.get(id=pk)
+    notes = student.notes_set.all()
+    period = Period.objects.all()
+
+    notes_count = notes.count()
+
+    context = {
+        'student':student,
+        'notes':notes,
+        'notes_count':notes_count,
+        'period':period,
+    }
+    return  render(request, 'accounts/transkript_student.html', context)
+
 """@login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def transkriptView(request,pk):
@@ -1144,9 +1161,8 @@ def period(request):
     period = Period.objects.all()
     lesson = Lesson.objects.all()
 
-    myFilter = LessonFilter(request.GET, queryset=period)
-    period = myFilter.qs
-
+    myFilter = LessonFilter(request.GET, queryset=lesson)
+    lesson = myFilter.qs
 
     context = {
         'period':period,

@@ -37,6 +37,7 @@ class Lesson(models.Model):
     def __str__(self):
         return self.lname
 
+
 class Notes(models.Model):
     STATUS1 = (
         ('gecti', 'Geçti'),

@@ -5,7 +5,7 @@
         {% if success %}
         <div class="alert alert-success" role="alert">
             Ders başarıyla güncellendi.
-            <a href="{% url 'lessons' %}" class="alert-link">Ana sayfaya git.</a>
+            <a href="{% url 'period' %}" class="alert-link">Ana sayfaya git.</a>
         </div>
         {% else %}
         <div class="row justify-content-center">
@@ -19,7 +19,7 @@
                             {% csrf_token %}
                             {{ form.as_p }}
                             <button type="submit" class="btn btn-primary">Güncelle</button>
-                            <a href="{% url 'lessons' %}" class="btn btn-secondary">İptal</a>
+                            <a href="{% url 'period' %}" class="btn btn-secondary">İptal</a>
                         </form>
                     </div>
                 </div>

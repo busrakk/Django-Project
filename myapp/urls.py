@@ -74,6 +74,7 @@ urlpatterns = [
     path('transkript_pdf/', views.transkript_pdf, name='transkript_pdf'),
     path('pdf_view/', views.ViewPDF.as_view(), name='pdf_view'),
     path('pdf_download/', views.DownloadPDF.as_view(), name='pdf_download'),
+    path('student_transkript/<str:pk>/', views.studentTranskript, name='student_transkript'),
 
     path('period/', views.period, name='period'),
 ]

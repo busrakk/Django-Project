@@ -46,3 +46,6 @@ class PeriodFilter(django_filters.FilterSet):
     class Meta:
         model = Period
         fields = ['name']
+        labels = {
+            'name': 'Ders Dönemi'
+        }

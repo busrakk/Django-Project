@@ -224,6 +224,7 @@ def userPage(request):
 
 
     notes_count = notes.count()
+
     aa = notes.filter(lettergrade='AA').count()
     ba = notes.filter(lettergrade='BA').count()
     bb = notes.filter(lettergrade='BB').count()
@@ -255,9 +256,13 @@ def lessonUser(request):
     notes = request.user.student.notes_set.all()
     notes_count = notes.count()
 
+    myFilter = NotesFilter(request.GET, queryset=notes)
+    notes = myFilter.qs
+
     context = {
         'notes':notes,
         'notes_count':notes_count,
+        'myFilter':myFilter,
     }
     return render(request, 'accounts/lesson_user.html', context)
 

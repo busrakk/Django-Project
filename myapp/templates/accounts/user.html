@@ -4,54 +4,31 @@
 
     <br>
     <div class="row">
-        <div class="col-md-3">
-            <div class="card card-body">
-                <hr>
-                <h3 style="text-align: center">{{ request.user.student.name }} {{ request.user.student.surname }}</h3>
-                <hr>
-                <img class="profile-pic" src="{{ request.user.student.profile_pic.url }}">
-            </div>
+        <div class="card-header col-md-4  col-sm-2">
+        <div class="card text-white bg-primary text-center">
+            <div class="card-header">Öğrenim Bilgileri</div>
+              <div class="card-body">
+                <p class="card-text">{{ request.user.student.grade }}. Sınıf</p>
+              </div>
         </div>
+      </div>
+        <div class="card-header col-md-4 col-sm-2">
+            <div class="card text-white bg-secondary text-center">
+                    <div class="card-header">Ders Sayısı</div>
+                  <div class="card-body">
+                    <h5 class="card-text">{{ notes_count }}</h5>
+                  </div>
+            </div>
+          </div>
+        <div class="card-header col-md-4 col-sm-2">
+            <div class="card text-white bg-info text-center">
+                <div class="card-header">AGNO</div>
+                  <div class="card-body">
+                    <h5 class="card-text">{{ notes_count }}</h5>
+                  </div>
+            </div>
+          </div>
 
-            <div class="col-md-3">
-                        <div class="row">
-                            <div class="col">
-                                <div class="col-md">
-                                    <div class="card text-center border-info mb-3" style="max-width: 18rem;">
-                                         <div class="card-body">
-                                            <a class="nav-link" href="{% url 'lesson_user' %}">View All Lesson</a>
-                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-            </div>
-            <div class="col-md-3">
-                    <div class="row">
-                        <div class="col">
-                            <div class="col-md">
-                                <div class="card text-center border-info mb-3" style="max-width: 18rem;">
-                                     <div class="card-body">
-                                        <a class="nav-link" href="{% url 'notes_user' %}">View All Notes</a>
-                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-    <div class="col-md-3">
-                    <div class="row">
-                        <div class="col">
-                            <div class="col-md">
-                                <div class="card text-center border-info mb-3" style="max-width: 18rem;">
-                                     <div class="card-body">
-                                        <a class="nav-link" href="{% url 'account' %}">Settings</a>
-                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
     </div>
 
 {% endblock content %}

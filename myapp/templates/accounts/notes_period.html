@@ -28,14 +28,14 @@
                         <div class="card card-header">
                             <form method="get">
 
-                                myFilter.form }}
+                                 myFilter.form }}
 
                                 <button class="btn btn-primary" type="submit">Arama</button>
                             </form>
                         </div>
                     </div>
                 </div>
-            -->
+           -->
           {% if lessons %}
                 <div class="card-body m-1">
                     <p class="card-text">
@@ -52,6 +52,8 @@
                                         <th scope="col">Harf Notu</th>
                                         <th scope="col">Ortalama</th>
                                         <th scope="col">Durum</th>
+                                        <th scope="col">ACTION</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,19 +70,31 @@
                                                 <td>{{ note.lettergrade }}</td>
                                                 <td>{{ note.ort }}</td>
                                                 <td>{{ note.status }}</td>
-                                            </tr>
+                                                <td>
+                                                    <a class="btn btn me-1" href="{% url 'lesson_period_edit' note.id %}">
+                                                        <i class="fa-regular fa-pen-to-square"></i>
+                                                    </a>
+                                                </td>
+                                           </tr>
                                         {% endfor %}
-                                        {% for lesson in lessons %}
+                                    {% endif %}
+                                    {% if not notes %}
+                                        {% for note in lessons %}
                                             <tr>
-                                                <td><img class="profile-pic1" src="{{ lesson.profile_pic.url }}"></td>
-                                                <td>{{ lesson.name }}</td>
-                                                <td>{{ lesson.surname }}</td>
+                                                <td><img class="profile-pic1" src="{{ note.profile_pic.url }}"></td>
+                                                <td>{{ note.name }}</td>
+                                                <td>{{ note.surname }}</td>
                                                 <td>-</td>
                                                 <td>-</td>
                                                 <td>-</td>
                                                 <td>-</td>
                                                 <td>-</td>
                                                 <td>-</td>
+                                                <td>
+                                                    <a class="btn btn me-1" href="{% url 'lesson_period_add' %}">
+                                                        <i class="fa-solid fa-file-pen"></i>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         {% endfor %}
                                     {% endif %}

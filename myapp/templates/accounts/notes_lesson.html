@@ -26,12 +26,12 @@
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
-                                        <tr>
+                                     <tr>
                                         <th scope="col">Ders Kredisi</th>
                                         <th scope="col">Ders Kodu</th>
                                         <th scope="col">Ders Adı</th>
                                         <th scope="col">ACTION</th>
-                                      </tr>
+                                     </tr>
                                 </thead>
                                 <tbody>
                                    {% for lesson in lessons %}
@@ -40,7 +40,9 @@
                                         <td>{{ lesson.lcode }}</td>
                                         <td>{{ lesson.lname }}</td>
                                         <td>
-
+                                            <a class="btn btn me-1" href="">
+                                                <i class="fa-solid fa-user-pen"></i>
+                                            </a>
                                         </td>
                                    </tr>
                                    {% endfor %}

@@ -11,7 +11,7 @@ from django.urls import reverse
 
 from .models import *
 
-from .forms import NotesForm, StudentForm, DepartmentForm, CreateUserFrom, LessonForm
+from .forms import NotesForm, StudentForm, LessonForm, CreateUserFrom
 from .filters import NotesFilter, StudentFilter, DepartmentFilter, LessonFilter, PeriodFilter
 
 from django.contrib import messages
@@ -315,6 +315,8 @@ def accountSettings(request):
 
     context = {'form':form}
     return render(request, 'accounts/account_settings.html', context)
+
+
 
 
 #-------------- lesson ------------
@@ -697,6 +699,25 @@ def updateStudent(request,pk):
 
 
 #--- notes ---
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def notesPeriod(request, pk):
+    lesson = Lesson.objects.get(id=pk)
+    lessons = lesson.student.all()
+    notes = lesson.notes_set.all()
+    notess = Notes.objects.all()
+
+    myFilter = NotesFilter(request.GET, queryset=notess)
+    notess = myFilter.qs
+
+    context = {
+        'lessons':lessons,
+        'lesson':lesson,
+        'notes':notes,
+        'notess':notess,
+    }
+    return render(request, 'accounts/notes_period.html', context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])

@@ -17,6 +17,7 @@ urlpatterns = [
     path('notes_user/', views.notesUser, name='notes_user'),
     path('account/', views.accountSettings, name='account'),
 
+
     path('lessons/', views.lessons, name='lessons'),
 
     path('<str:pk>', views.lessonView, name='lesson_view'),
@@ -54,6 +55,8 @@ urlpatterns = [
 
     path('notes_lesson/', views.notesLesson, name='notes_lesson'),
     path('notes_student/', views.notesStudent, name='notes_student'),
+    path('notes_period/<str:pk>/', views.notesPeriod, name='notes_period'),
+
 
     path('notes_create/', views.notesCreate, name='notes_create'),
     path('notes_update/', views.notesUpdate, name='notes_update'),

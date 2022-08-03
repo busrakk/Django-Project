@@ -27,94 +27,26 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
+                                        <th scope="col">Ders Kredisi</th>
                                         <th scope="col">Ders Kodu</th>
                                         <th scope="col">Ders Adı</th>
-                                        <th scope="col">Ders Kredisi</th>
                                         <th scope="col">Ders Dönemi</th>
+                                        <th scope="col">Öğrenci Sayısı</th>
                                         <th scope="col">ACTION</th>
-                                        <th scope="col">
-                                            <a class="btn btn-success me-1" href="{% url 'lesson_add' %}">
-                                                <i class="fa-regular fa-plus fa-lg"></i>
-                                            </a>
-                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                    {% for i in lessons %}
                                     <tr>
+                                        <td>{{ i.lcredit }}</td>
                                         <td>{{ i.lcode }}</td>
                                         <td>{{ i.lname }}</td>
-                                        <td>{{ i.lcredit }}</td>
                                         <td>{{ i.period }}</td>
+                                        <td>{{ i.student.count }}</td>
                                         <td>
-                                            <button type="button" class="btn me-1" href="{% url 'lesson_view' i.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{ i.id }}">
-                                                <i class="fa-solid fa-circle-info"></i>
-                                            </button>
-
-                                            <!-- model view student -->
-
-                                            <div class="modal" id="myModal{{ i.id }}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
-                                              <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                  <div class="modal-header">
-                                                    <h5 class="modal-title">Ders : {{ i.lname }}</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true"></span>
-                                                    </button>
-                                                  </div>
-                                                  <div class="modal-body">
-                                                    <ul class="List-unstyled">
-                                                       <li>Ders Kodu: <strong>{{ i.lcode }}</strong></li>
-                                                       <li>Ders Adı: <strong>{{ i.lname }}</strong></li>
-                                                       <li>Ders Kredisi: <strong>{{ i.lcredit }}</strong></li>
-                                                       <li>Ders Dönemi: <strong>{{ i.period }}</strong></li>
-                                                    </ul>
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Kapat</button>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-
-                                            <a class="btn btn me-1" href="{% url 'lesson_edit' i.id %}">
-                                                <i class="fa-regular fa-pen-to-square"></i>
-                                            </a>
-
-                                            <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#delete{{ i.id }}">
-                                                <i class="fa-regular fa-trash-can"></i>
-                                            </button>
-
-                                            <!-- model delete student -->
-
-                                            <div class="modal" id="delete{{ i.id }}" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
-                                              <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                  <div class="modal-header">
-                                                    <h5 class="modal-title">Ders : {{ i.lname }} </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true"></span>
-                                                    </button>
-                                                  </div>
-                                                  <div class="modal-body">
-                                                      <p>Bu dersi silmek istiyor musunuz?</p>
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                      <!-- name='delete'-->
-                                                      <form action="{% url 'lesson_delete' i.id %}" method="post">
-                                                          {% csrf_token %}
-                                                          <input type="submit" class="btn btn-primary" value="Delete">
-                                                      </form>
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-
-                                            <a class="btn btn me-1" href="{% url 'lesson_period' i.id %}">
+                                            <a class="btn btn me-1" href="{% url 'notes_period' i.id %}">
                                                 <i class="fa-solid fa-user-pen"></i>
                                             </a>
-
                                         </td>
                                     </tr>
                                     {% endfor %}

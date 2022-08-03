@@ -10,6 +10,12 @@
             margin: 0 auto;
             border-radius: 50%;
         }
+        .profile-pic1{
+            max-width: 35px;
+            max-height: 35px;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
     </style>
 
 <div class="container-fluid">
@@ -37,6 +43,7 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
+                                        <th scope="col">Fotoğraf</th>
                                         <th scope="col">Öğrenci Numarası</th>
                                         <th scope="col">Öğrenci Adı</th>
                                         <th scope="col">Öğrenci Soyadı</th>
@@ -47,6 +54,7 @@
                                 <tbody>
                                    {% for i in students %}
                                     <tr>
+                                        <td><img class="profile-pic1" src="{{ i.profile_pic.url }}"></td>
                                         <td>{{ i.num }}</td>
                                         <td>{{ i.name }}</td>
                                         <td>{{ i.surname }}</td>
@@ -72,7 +80,7 @@
                                                        <li>Öğrenci Numarası: <strong>{{ i.num }}</strong></li>
                                                        <li>Öğrenci Adı: : <strong>{{ i.name }}</strong></li>
                                                        <li>Öğrenci Soyadı: <strong>{{ i.surname }}</strong></li>
-                                                       <li>Öğrenci Sınıfı: <strong>{{ i.grade }}</strong></li>
+                                                       <li>Öğrenci Sınıfı: <strong>{{ i.grade }}. Sınıf</strong></li>
                                                     </ul>
                                                   </div>
                                                   <div class="modal-footer">

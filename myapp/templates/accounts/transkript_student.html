@@ -2,371 +2,343 @@
 
 {% block content %}
 
-    <style>
-        .profile-pic{
-            max-width: 100px;
-            max-height: 100px;
-            margin: 0 auto;
-            border-radius: 50%;
-        }
-    </style>
-    <br>
+<div class="container-fluid">
+    <div class="col-md-12">
 
-
-    <div class="row">
-        <div class="card-header col-md-6  col-sm-1">
-              <div class="card-body">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr class="table-active">
-                             <th scope="row">Adı Soyadı: </th>
-                             <td>{{ student.name }} {{ student.surname }}</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Sınıfı: </th>
-                             <td>{{ student.grade }}. Sınıf</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Numarası: </th>
-                             <td>{{ student.num }}</td>
-                          </tr>
-                      </thead>
-                  </table>
-              </div>
-            </div>
-        <div class="card-header col-md-6  col-sm-1">
-              <div class="card-body">
-
-              </div>
-            </div>
-    </div>
-
-
-    <div class="row">
-        <div class="card-header col-md-6">
-            <div class="card-header">
-                {% if period.id == 1 %}
-                    {{ period }}
-                {% endif %}
-            </div>
-              <div class="card-body">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr class="table-active">
-                             <th scope="row">Adı Soyadı: </th>
-                             <td>{{ student.name }} {{ student.surname }}</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Sınıfı: </th>
-                             <td>{{ student.grade }}. Sınıf</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Numarası: </th>
-                             <td>{{ student.num }}</td>
-                          </tr>
-                      </thead>
-                  </table>
-              </div>
-            </div>
-        <div class="card-header col-md-6">
-            <div class="card-header">Header</div>
-              <div class="card-body">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr class="table-active">
-                             <th scope="row">Adı Soyadı: </th>
-                             <td>{{ student.name }} {{ student.surname }}</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Sınıfı: </th>
-                             <td>{{ student.grade }}. Sınıf</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Numarası: </th>
-                             <td>{{ student.num }}</td>
-                          </tr>
-                      </thead>
-                  </table>
-              </div>
-            </div>
-    </div>
-
-
-    <div class="row">
-        <div class="card-header col-md-6">
-            <div class="card-header">Header</div>
-              <div class="card-body">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr class="table-active">
-                             <th scope="row">Adı Soyadı: </th>
-                             <td>{{ student.name }} {{ student.surname }}</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Sınıfı: </th>
-                             <td>{{ student.grade }}. Sınıf</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Numarası: </th>
-                             <td>{{ student.num }}</td>
-                          </tr>
-                      </thead>
-                  </table>
-              </div>
-            </div>
-        <div class="card-header col-md-6">
-            <div class="card-header">Header</div>
-              <div class="card-body">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr class="table-active">
-                             <th scope="row">Adı Soyadı: </th>
-                             <td>{{ student.name }} {{ student.surname }}</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Sınıfı: </th>
-                             <td>{{ student.grade }}. Sınıf</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Numarası: </th>
-                             <td>{{ student.num }}</td>
-                          </tr>
-                      </thead>
-                  </table>
-              </div>
-            </div>
-    </div>
-
-
-    <div class="row">
-        <div class="card-header col-md-6">
-            <div class="card-header">Header</div>
-              <div class="card-body">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr class="table-active">
-                             <th scope="row">Adı Soyadı: </th>
-                             <td>{{ student.name }} {{ student.surname }}</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Sınıfı: </th>
-                             <td>{{ student.grade }}. Sınıf</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Numarası: </th>
-                             <td>{{ student.num }}</td>
-                          </tr>
-                      </thead>
-                  </table>
-              </div>
-            </div>
-        <div class="card-header col-md-6">
-            <div class="card-header">Header</div>
-              <div class="card-body">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr class="table-active">
-                             <th scope="row">Adı Soyadı: </th>
-                             <td>{{ student.name }} {{ student.surname }}</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Sınıfı: </th>
-                             <td>{{ student.grade }}. Sınıf</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Numarası: </th>
-                             <td>{{ student.num }}</td>
-                          </tr>
-                      </thead>
-                  </table>
-              </div>
-            </div>
-
-    </div>
-
-
-    <div class="row">
-        <div class="card-header col-md-6">
-            <div class="card-header">Header</div>
-              <div class="card-body">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr class="table-active">
-                             <th scope="row">Adı Soyadı: </th>
-                             <td>{{ student.name }} {{ student.surname }}</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Sınıfı: </th>
-                             <td>{{ student.grade }}. Sınıf</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Numarası: </th>
-                             <td>{{ student.num }}</td>
-                          </tr>
-                      </thead>
-                  </table>
-              </div>
-            </div>
-        <div class="card-header col-md-6">
-            <div class="card-header">Header</div>
-              <div class="card-body">
-                  <table class="table table-hover">
-                      <thead>
-                          <tr class="table-active">
-                             <th scope="row">Adı Soyadı: </th>
-                             <td>{{ student.name }} {{ student.surname }}</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Sınıfı: </th>
-                             <td>{{ student.grade }}. Sınıf</td>
-                          </tr>
-                          <tr class="table-active">
-                             <th scope="row">Öğrenci Numarası: </th>
-                             <td>{{ student.num }}</td>
-                          </tr>
-                      </thead>
-                  </table>
-              </div>
-            </div>
-    </div>
-
-
-
-    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
-                    <div class="row">
-                        <div class="col">
-                            <div class="col-md">
-                                <p></p>
-                                <div class="card mb-3">
-                                  <h3 class="card-header">{{ student.name }} {{ student.surname }}</h3>
-                                    <p></p>
-                                  <img class="profile-pic" src="{{ student.profile_pic.url }}">
-                                  <div class="card-body">
-                                      <table class="table table-hover">
-                                        <thead>
-                                            <tr class="table-active">
-                                              <th scope="row">Öğrenci Numarası: </th>
-                                              <td>{{ student.num }}</td>
-                                            </tr>
-                                            <tr class="table-active">
-                                              <th scope="row">Öğrenci Adı: </th>
-                                              <td>{{ student.name }}</td>
-                                            </tr>
-                                            <tr class="table-active">
-                                              <th scope="row">Öğrenci Soyadı: </th>
-                                              <td>{{ student.surname }}</td>
-                                            </tr>
-                                            <tr class="table-active">
-                                              <th scope="row">Öğrenci Sınıfı: </th>
-                                              <td>{{ student.grade }}. Sınıf</td>
-                                            </tr>
-                                        </thead>
-                                      </table>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="btn btn-info" href="" target="_blank">View</a>
-                    <a class="btn btn-info" href="">Download</a>
-            </div>
-            <div class="col-9">
-                    <div class="card bg-light ms-3 me-3 mb-3">
-                        <div class="card-body m-1">
-                        <p class="card-text">
-                            <div class="table-responsive">
-                            {% for i in period %}
-                                <h4>
-                                    <a href="#donem{{ i.id }}" aria-selected="false" tabindex="-1">{{ i.name }}</a>
-                                </h4>
-                                {% if notes %}
-                                    <p></p>
-                                <div id="myTabContent" class="tab-content">
-                                    <div class="tab-pane fade show active" id="donem{{ i.id }}" role="tabpanel">
+                <div class="card-header">
+                   <table class="table table-hover">
+                          <thead>
+                              <tr class="table-active">
+                                 <th scope="row">Adı Soyadı: </th>
+                                 <td>{{ student.name }} {{ student.surname }}</td>
+                              </tr>
+                              <tr class="table-active">
+                                 <th scope="row">Öğrenci Sınıfı: </th>
+                                 <td>{{ student.grade }}. Sınıf</td>
+                              </tr>
+                              <tr class="table-active">
+                                 <th scope="row">Öğrenci Numarası: </th>
+                                 <td>{{ student.num }}</td>
+                              </tr>
+                          </thead>
+                      </table>
+                </div>
+        </div>
 
-                                            <table class="table table-hover">
-                                                <thead>
-                                                  <tr>
-                                                      <th scope="col">Ders Kodu</th>
-                                                      <th scope="col">Ders Adı</th>
-                                                      <th scope="col">Ders Kredisi</th>
-                                                      <th scope="col">Ortalama</th>
-                                                      <th scope="col">Harf Notu</th>
-                                                      <th scope="col">Durum</th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                  {% for n in notes %}
-                                                        {% if n.lesson.period.id == i.id %}
-                                                              <tr>
-                                                                  <td style="width:10%">{{ n.lesson.lcode }}</td>
-                                                                  <td style="width:10%">{{ n.lesson.lname }}</td>
-                                                                  <td style="width:10%">{{ n.lesson.lcredit }}</td>
-                                                                  <td style="width:10%">{{ n.ort }}</td>
-                                                                  <td style="width:10%">{{ n.lettergrade }}</td>
-                                                                  <td style="width:10%">{{ n.status }}</td>
-                                                              </tr>
-                                                        {% endif %}
-                                                  {% endfor %}
-                                                </tbody>
-                                            </table>
-                                    </div>
-                                </div>
-                                {% else %}
-                                    <p></p>
-                                    <p class="alert alert-primary ms-1 me-1">Not Kaydı Yok</p>
-                                {% endif %}
-                            {% endfor %}
-                            </div>
-                        </p>
-                        </div>
-                    </div>
+        <div class="row">
+        {% for i in period %}
+            {% if i.id == 1 %}
+            <div class="card-header col-md-6">
+                <div class="card-header">
+                   <h5>{{ i.name }}</h5>
                 </div>
-            <!--
-            <div class="col-md-9">
-            <p></p>
-              <div class="card bg-light ms-3 me-3 mb-3">
-              {% if notes %}
-                    <div class="card-body m-1">
-                        <p class="card-text">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Lesson Code</th>
-                                            <th scope="col">Lesson Name</th>
-                                            <th scope="col">Vise</th>
-                                            <th scope="col">Final</th>
-                                            <th scope="col">Make Exam</th>
-                                            <th scope="col">Letter Grade</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for note in notes %}
-                                       <tr>
-                                            <td>{{ note.lesson.lcode }}</td>
-                                            <td>{{ note.lesson.lname }}</td>
-                                            <td>{{ note.vise }}</td>
-                                            <td>{{ note.final }}</td>
-                                            <td>{{ note.mkexam }}</td>
-                                            <td>{{ note.lettergrade }}</td>
-                                       </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </p>
-                    </div>
+                <div class="card-body">
+                      <table class="table table-hover">
+                           <thead>
+                               <tr>
+                                   <th scope="col">Ders Kodu</th>
+                                   <th scope="col">Ders Adı</th>
+                                   <th scope="col">Kredi</th>
+                                   <th scope="col">Ort</th>
+                                   <th scope="col">Harf</th>
+                                   <th scope="col">Durum</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               {% for n in notes %}
+                                   {% if n.lesson.period.id == i.id %}
+                                   <tr>
+                                        <td style="width:25%">{{ n.lesson.lcode }}</td>
+                                        <td style="width:25%">{{ n.lesson.lname }}</td>
+                                        <td style="width:7%">{{ n.lesson.lcredit }}</td>
+                                        <td style="width:7%">{{ n.ort }}</td>
+                                        <td style="width:7%">{{ n.lettergrade }}</td>
+                                        <td style="width:10%">{{ n.status }}</td>
+                                   </tr>
+                                   {% endif %}
+                               {% endfor %}
+                           </tbody>
+                      </table>
                 </div>
-                    {% else %}
-                        <p></p>
-                        <h5 class="alert alert-primary ms-4 me-4">Not Kaydı Yok</h5>
-                    {% endif %}
             </div>
-            -->
+            {% endif %}
+        {% endfor %}
+
+        {% for i in period %}
+            {% if i.id == 2 %}
+            <div class="card-header col-md-6">
+                <div class="card-header">
+                    <h5>{{ i.name }}</h5>
+                </div>
+                  <div class="card-body">
+                      <table class="table table-hover">
+                           <thead>
+                               <tr>
+                                   <th scope="col">Ders Kodu</th>
+                                   <th scope="col">Ders Adı</th>
+                                   <th scope="col">Kredi</th>
+                                   <th scope="col">Ort</th>
+                                   <th scope="col">Harf</th>
+                                   <th scope="col">Durum</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               {% for n in notes %}
+                                   {% if n.lesson.period.id == i.id %}
+                                   <tr>
+                                        <td style="width:25%">{{ n.lesson.lcode }}</td>
+                                        <td style="width:25%">{{ n.lesson.lname }}</td>
+                                        <td style="width:7%">{{ n.lesson.lcredit }}</td>
+                                        <td style="width:7%">{{ n.ort }}</td>
+                                        <td style="width:7%">{{ n.lettergrade }}</td>
+                                        <td style="width:10%">{{ n.status }}</td>
+                                   </tr>
+                                   {% endif %}
+                               {% endfor %}
+                           </tbody>
+                      </table>
+                  </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+
+        <div class="row">
+        {% for i in period %}
+            {% if i.id == 3 %}
+            <div class="card-header col-md-6">
+                <div class="card-header">
+                    <h5>{{ i.name }}</h5>
+                </div>
+                  <div class="card-body">
+                      <table class="table table-hover">
+                           <thead>
+                               <tr>
+                                   <th scope="col">Ders Kodu</th>
+                                   <th scope="col">Ders Adı</th>
+                                   <th scope="col">Kredi</th>
+                                   <th scope="col">Ort</th>
+                                   <th scope="col">Harf</th>
+                                   <th scope="col">Durum</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               {% for n in notes %}
+                                   {% if n.lesson.period.id == i.id %}
+                                   <tr>
+                                        <td style="width:25%">{{ n.lesson.lcode }}</td>
+                                        <td style="width:25%">{{ n.lesson.lname }}</td>
+                                        <td style="width:7%">{{ n.lesson.lcredit }}</td>
+                                        <td style="width:7%">{{ n.ort }}</td>
+                                        <td style="width:7%">{{ n.lettergrade }}</td>
+                                        <td style="width:10%">{{ n.status }}</td>
+                                   </tr>
+                                   {% endif %}
+                               {% endfor %}
+                           </tbody>
+                      </table>
+                  </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for i in period %}
+            {% if i.id == 4 %}
+            <div class="card-header col-md-6">
+                <div class="card-header">
+                    <h5>{{ i.name }}</h5>
+                </div>
+                  <div class="card-body">
+                      <table class="table table-hover">
+                           <thead>
+                               <tr>
+                                   <th scope="col">Ders Kodu</th>
+                                   <th scope="col">Ders Adı</th>
+                                   <th scope="col">Kredi</th>
+                                   <th scope="col">Ort</th>
+                                   <th scope="col">Harf</th>
+                                   <th scope="col">Durum</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               {% for n in notes %}
+                                   {% if n.lesson.period.id == i.id %}
+                                   <tr>
+                                        <td style="width:25%">{{ n.lesson.lcode }}</td>
+                                        <td style="width:25%">{{ n.lesson.lname }}</td>
+                                        <td style="width:7%">{{ n.lesson.lcredit }}</td>
+                                        <td style="width:7%">{{ n.ort }}</td>
+                                        <td style="width:7%">{{ n.lettergrade }}</td>
+                                        <td style="width:10%">{{ n.status }}</td>
+                                   </tr>
+                                   {% endif %}
+                               {% endfor %}
+                           </tbody>
+                      </table>
+                  </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+
+        <div class="row">
+        {% for i in period %}
+            {% if i.id == 5 %}
+            <div class="card-header col-md-6">
+                <div class="card-header">
+                    <h5>{{ i.name }}</h5>
+                </div>
+                  <div class="card-body">
+                      <table class="table table-hover">
+                           <thead>
+                               <tr>
+                                   <th scope="col">Ders Kodu</th>
+                                   <th scope="col">Ders Adı</th>
+                                   <th scope="col">Kredi</th>
+                                   <th scope="col">Ort</th>
+                                   <th scope="col">Harf</th>
+                                   <th scope="col">Durum</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               {% for n in notes %}
+                                   {% if n.lesson.period.id == i.id %}
+                                   <tr>
+                                        <td style="width:25%">{{ n.lesson.lcode }}</td>
+                                        <td style="width:25%">{{ n.lesson.lname }}</td>
+                                        <td style="width:7%">{{ n.lesson.lcredit }}</td>
+                                        <td style="width:7%">{{ n.ort }}</td>
+                                        <td style="width:7%">{{ n.lettergrade }}</td>
+                                        <td style="width:10%">{{ n.status }}</td>
+                                   </tr>
+                                   {% endif %}
+                               {% endfor %}
+                           </tbody>
+                      </table>
+                  </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for i in period %}
+            {% if i.id == 6 %}
+            <div class="card-header col-md-6">
+                <div class="card-header">
+                    <h5>{{ i.name }}</h5>
+                </div>
+                  <div class="card-body">
+                      <table class="table table-hover">
+                           <thead>
+                               <tr>
+                                   <th scope="col">Ders Kodu</th>
+                                   <th scope="col">Ders Adı</th>
+                                   <th scope="col">Kredi</th>
+                                   <th scope="col">Ort</th>
+                                   <th scope="col">Harf</th>
+                                   <th scope="col">Durum</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               {% for n in notes %}
+                                   {% if n.lesson.period.id == i.id %}
+                                   <tr>
+                                        <td style="width:25%">{{ n.lesson.lcode }}</td>
+                                        <td style="width:25%">{{ n.lesson.lname }}</td>
+                                        <td style="width:7%">{{ n.lesson.lcredit }}</td>
+                                        <td style="width:7%">{{ n.ort }}</td>
+                                        <td style="width:7%">{{ n.lettergrade }}</td>
+                                        <td style="width:10%">{{ n.status }}</td>
+                                   </tr>
+                                   {% endif %}
+                               {% endfor %}
+                           </tbody>
+                      </table>
+                  </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+
+        <div class="row">
+        {% for i in period %}
+            {% if i.id == 7 %}
+            <div class="card-header col-md-6">
+                <div class="card-header">
+                    <h5>{{ i.name }}</h5>
+                </div>
+                  <div class="card-body">
+                      <table class="table table-hover">
+                           <thead>
+                               <tr>
+                                   <th scope="col">Ders Kodu</th>
+                                   <th scope="col">Ders Adı</th>
+                                   <th scope="col">Kredi</th>
+                                   <th scope="col">Ort</th>
+                                   <th scope="col">Harf</th>
+                                   <th scope="col">Durum</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               {% for n in notes %}
+                                   {% if n.lesson.period.id == i.id %}
+                                   <tr>
+                                        <td style="width:25%">{{ n.lesson.lcode }}</td>
+                                        <td style="width:25%">{{ n.lesson.lname }}</td>
+                                        <td style="width:7%">{{ n.lesson.lcredit }}</td>
+                                        <td style="width:7%">{{ n.ort }}</td>
+                                        <td style="width:7%">{{ n.lettergrade }}</td>
+                                        <td style="width:10%">{{ n.status }}</td>
+                                   </tr>
+                                   {% endif %}
+                               {% endfor %}
+                           </tbody>
+                      </table>
+                  </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for i in period %}
+            {% if i.id == 10 %}
+            <div class="card-header col-md-6">
+                <div class="card-header">
+                    <h5>{{ i.name }}</h5>
+                </div>
+                  <div class="card-body">
+                      <table class="table table-hover">
+                           <thead>
+                               <tr>
+                                   <th scope="col">Ders Kodu</th>
+                                   <th scope="col">Ders Adı</th>
+                                   <th scope="col">Kredi</th>
+                                   <th scope="col">Ort</th>
+                                   <th scope="col">Harf</th>
+                                   <th scope="col">Durum</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               {% for n in notes %}
+                                   {% if n.lesson.period.id == i.id %}
+                                   <tr>
+                                        <td style="width:25%">{{ n.lesson.lcode }}</td>
+                                        <td style="width:25%">{{ n.lesson.lname }}</td>
+                                        <td style="width:7%">{{ n.lesson.lcredit }}</td>
+                                        <td style="width:7%">{{ n.ort }}</td>
+                                        <td style="width:7%">{{ n.lettergrade }}</td>
+                                        <td style="width:10%">{{ n.status }}</td>
+                                   </tr>
+                                   {% endif %}
+                               {% endfor %}
+                           </tbody>
+                      </table>
+                  </div>
+                </div>
+            {% endif %}
+        {% endfor %}
         </div>
     </div>
+</div>
+
 
 {% endblock content %}

@@ -3,13 +3,39 @@
 {% block content %}
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card card-body">
                 <form action="" method="post">
                     <!-- CSRF: verileri güvenli göndermenin bir yolu -->
                     {% csrf_token %}
-                        {{ form }}
-                        <hr>
+                    <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Öğrenci Adı</th>
+                                        <th scope="col">Vize</th>
+                                        <th scope="col">Final</th>
+                                        <th scope="col">Büt</th>
+                                        <th scope="col">Harf</th>
+                                        <th scope="col">Ort</th>
+                                        <th scope="col">Durum</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   {{ formset.management_form }}
+                                    {% for form in formset %}
+                                    <tr>
+                                        <td>{{ form.student }}</td>
+                                        <td style="width:10%">{{ form.vise }}</td>
+                                        <td style="width:10%">{{ form.final }}</td>
+                                        <td style="width:10%">{{ form.mkexam }}</td>
+                                        <td style="width:10%">{{ form.lettergrade }}</td>
+                                        <td style="width:10%">{{ form.ort }}</td>
+                                        <td style="width:10%">{{ form.status }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
 
                     <input type="submit" name="Submit">
                 </form>

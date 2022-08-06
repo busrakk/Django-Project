@@ -10,6 +10,7 @@
             border-radius: 50%;
         }
     </style>
+
     <br>
 
     <div class="container-fluid">
@@ -102,49 +103,7 @@
                     </div>
                 </div>
 
-            <!--
-            <div class="col-md-9">
-            <p></p>
-              <div class="card bg-light ms-3 me-3 mb-3">
-              {% if notes %}
-                    <div class="card-body m-1">
-                        <p class="card-text">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Lesson Code</th>
-                                            <th scope="col">Lesson Name</th>
-                                            <th scope="col">Vise</th>
-                                            <th scope="col">Final</th>
-                                            <th scope="col">Make Exam</th>
-                                            <th scope="col">Letter Grade</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for note in notes %}
-                                       <tr>
-                                            <td>{{ note.lesson.lcode }}</td>
-                                            <td>{{ note.lesson.lname }}</td>
-                                            <td>{{ note.vise }}</td>
-                                            <td>{{ note.final }}</td>
-                                            <td>{{ note.mkexam }}</td>
-                                            <td>{{ note.lettergrade }}</td>
-                                       </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </p>
-                    </div>
-                </div>
-                    {% else %}
-                        <p></p>
-                        <h5 class="alert alert-primary ms-4 me-4">Not Kaydı Yok</h5>
-                    {% endif %}
-            </div>
-            -->
         </div>
     </div>
-</div>
+
 {% endblock content %}

@@ -69,6 +69,8 @@ urlpatterns = [
     path('student_notes_view/<str:pk>/', views.studentNotesView, name='student_notes_view'),
     path('student_notes_create/<str:pk>/', views.studentNotesCreate, name='student_notes_create'),
 
+    path('update_all_notes/<str:pk>/', views.updateAllNotes, name='update_all_notes'),
+
     path('transkript/', views.transkript, name='transkript'),
     path('transkript_pdf/', views.transkript_pdf, name='transkript_pdf'),
     path('pdf_view/', views.ViewPDF.as_view(), name='pdf_view'),

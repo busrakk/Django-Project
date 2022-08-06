@@ -12,7 +12,7 @@ from django.urls import reverse
 from .models import *
 
 from .forms import NotesForm, StudentForm, LessonForm, CreateUserFrom
-from .filters import NotesFilter, StudentFilter, DepartmentFilter, LessonFilter, PeriodFilter
+from .filters import NotesFilter, StudentFilter, LessonFilter, PeriodFilter
 
 from django.contrib import messages
 
@@ -214,8 +214,6 @@ def accountSettings(request):
 
     context = {'form':form}
     return render(request, 'accounts/account_settings.html', context)
-
-
 
 
 #-------------- lesson ------------
@@ -756,19 +754,25 @@ def createNotes(request):
     context = {'form': form}
     return render(request, 'accounts/notes_form.html', context)
 
-"""@login_required(login_url='login')
+@login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def updateAllNotes(request, pk):
-    NotesFormSet = inlineformset_factory(Student, Notes, fields=('lesson', 'vise', 'final', 'mkexam', 'lettergrade'), extra=5)
-    student = Student.objects.get(id=pk)
-    formset = NotesFormSet(instance=student)
+    NotesFormSet = inlineformset_factory(Lesson, Notes, fields=('student','lesson', 'vise', 'final', 'mkexam', 'lettergrade', 'ort', 'status'))
+    lesson = Lesson.objects.get(id=pk)
+    lessons = lesson.student.all()
+    notes = lesson.notes_set.all()
+    formset = NotesFormSet(instance=lesson)
     if request.method == 'POST':
-        formset = NotesFormSet(request.POST, instance=student)
+        formset = NotesFormSet(request.POST, instance=lesson)
         if formset.is_valid():
             formset.save()
-            return redirect('/')
-    context = {'formset':formset}
-    return render(request, 'accounts/notes_form.html', context)"""
+            return redirect('lessons')
+    context = {
+        'formset':formset,
+        'lessons':lessons,
+        'notes':notes,
+    }
+    return render(request, 'accounts/notes_form.html', context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])

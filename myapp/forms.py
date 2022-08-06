@@ -28,6 +28,26 @@ class NotesForm(ModelForm):
     class Meta:
         model = Notes
         fields = '__all__'
+        labels = {
+            'student': 'Öğrenci Adı',
+            'lesson': 'Ders Adı',
+            'vise': 'Vize',
+            'final': 'Final',
+            'mkexam':'Büt',
+            'lettergrade':'Harf',
+            'ort':'Ort',
+            'status':'Durum'
+        }
+        widgets = {
+            'student': forms.TextInput(attrs={'class': 'form-control'}),
+            'lesson': forms.Select(attrs={'class': 'form-control'}),
+            'vise': forms.NumberInput(attrs={'class': 'form-control'}),
+            'final': forms.NumberInput(attrs={'class': 'form-control'}),
+            'mkexam': forms.NumberInput(attrs={'class': 'form-control'}),
+            'lettergrade': forms.Select(attrs={'class': 'form-control'}),
+            'ort': forms.NumberInput(attrs={'class': 'form-control'}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
+        }
 
 
 class DepartmentForm(ModelForm):

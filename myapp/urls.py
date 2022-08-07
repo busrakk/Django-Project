@@ -11,6 +11,7 @@ urlpatterns = [
 
     path('user/', views.userPage, name='user-page'),
     path('lesson_user/', views.lessonUser, name='lesson_user'),
+    path('lesson_user_view/', views.lessonUserView, name='lesson_user_view'),
     path('notes_user/', views.notesUser, name='notes_user'),
     path('account/', views.accountSettings, name='account'),
 

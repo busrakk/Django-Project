@@ -1,0 +1,59 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <h3 class="m-2">Alınan Dersler : {{ notes_count }}</h3>
+        <div class="row">
+            <div class="col-12">
+                <div class="card bg-light ms-3 me-3 mb-3">
+                    <div class="card-header">
+                        <div class="col">
+                            <div class="card card-header">
+                                <form method="get">
+
+                                    {{ myFilter.form }}
+
+                                    <button class="btn btn-primary" type="submit">Arama</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% for i in period %}
+                        {% if i.id == 1 %}
+                            <div class="card-body m-1">
+                                <p class="card-text">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Ders Kredisi</th>
+                                                    <th scope="col">Ders Kodu</th>
+                                                    <th scope="col">Ders Adı</th>
+                                                    <th scope="col">Ders Dönemi</th>
+                                                    <th scope="col">Öğrenci Sayısı</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               {% for l in notes %}
+                                                    <tr>
+                                                        <td>{{ l.lesson.lcredit }}</td>
+                                                        <td>{{ l.lesson.lcode }}</td>
+                                                        <td>{{ l.lesson.lname }}</td>
+                                                        <td>{{ l.lesson.period }}</td>
+                                                        <td>{{ l.lesson.student.count }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

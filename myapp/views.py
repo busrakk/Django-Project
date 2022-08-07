@@ -151,6 +151,22 @@ def userPage(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['student'])
 def lessonUser(request):
+    period = Period.objects.all()
+    lesson = Lesson.objects.all()
+
+    myFilter = LessonFilter(request.GET, queryset=lesson)
+    lesson = myFilter.qs
+
+    context = {
+        'period': period,
+        'lesson': lesson,
+        'myFilter': myFilter,
+    }
+    return render(request, 'accounts/lesson_user.html', context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['student'])
+def lessonUserView(request):
     notes = request.user.student.notes_set.all()
     notes_count = notes.count()
 
@@ -159,13 +175,14 @@ def lessonUser(request):
     myFilter = NotesFilter(request.GET, queryset=notes)
     notes = myFilter.qs
 
+
     context = {
         'notes':notes,
         'notes_count':notes_count,
         'myFilter':myFilter,
         'period':period,
     }
-    return render(request, 'accounts/lesson_user.html', context)
+    return render(request, 'accounts/lesson_user_view.html', context)
 
 
 @login_required(login_url='login')

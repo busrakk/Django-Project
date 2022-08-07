@@ -1,6 +1,8 @@
+import datetime
+
 from django.forms import inlineformset_factory
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.contrib.auth.forms import UserCreationForm
 
@@ -20,16 +22,13 @@ from django.contrib.auth.decorators import login_required
 
 from .decorators import unauthenticated_user, allowed_users, admin_only
 
+# Create your views here.
+
 #-----------------------------------------------------
 
-from io import BytesIO
-from django.template.loader import get_template
-from django.views import View
-from xhtml2pdf import pisa
+
 
 #------------------------------------------------------
-
-# Create your views here.
 
 # -------------- signup & login ------------
 @unauthenticated_user
@@ -155,6 +154,8 @@ def lessonUser(request):
     notes = request.user.student.notes_set.all()
     notes_count = notes.count()
 
+    period = Period.objects.all()
+
     myFilter = NotesFilter(request.GET, queryset=notes)
     notes = myFilter.qs
 
@@ -162,6 +163,7 @@ def lessonUser(request):
         'notes':notes,
         'notes_count':notes_count,
         'myFilter':myFilter,
+        'period':period,
     }
     return render(request, 'accounts/lesson_user.html', context)
 
@@ -214,6 +216,21 @@ def accountSettings(request):
 
     context = {'form':form}
     return render(request, 'accounts/account_settings.html', context)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['student'])
+def transkriptUser(request):
+    notes = request.user.student.notes_set.all()
+    notes_count = notes.count()
+
+    period = Period.objects.all()
+    context = {
+        'notes':notes,
+        'notes_count':notes_count,
+        'period':period,
+    }
+    return render(request, 'accounts/transkript_user.html', context)
 
 
 #-------------- lesson ------------
@@ -757,7 +774,7 @@ def createNotes(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def updateAllNotes(request, pk):
-    NotesFormSet = inlineformset_factory(Lesson, Notes, fields=('student','lesson', 'vise', 'final', 'mkexam', 'lettergrade', 'ort', 'status'))
+    NotesFormSet = inlineformset_factory(Lesson, Notes, fields=('student', 'lesson', 'vise', 'final', 'mkexam', 'lettergrade', 'ort', 'status'))
     lesson = Lesson.objects.get(id=pk)
     lessons = lesson.student.all()
     notes = lesson.notes_set.all()
@@ -1019,6 +1036,7 @@ def transkript(request):
     }
     return render(request, 'accounts/transkript.html', context)
 
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def studentTranskript(request, pk):
@@ -1044,43 +1062,6 @@ def transkriptView(request,pk):
     return HttpResponseRedirect(reverse('student_notes_view'))"""
 
 
-def render_to_pdf(template_src, context_dict={}):
-    template = get_template(template_src)
-    html = template.render(context_dict)
-    result = BytesIO()
-    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), content_type='application/pdf')
-    return  None
-
-data = {
-    "company":"aaa",
-    "jbbj":"jjbjb"
-}
-
-#opens up page as PDF
-class ViewPDF(View):
-    def get(self, request, *args, **kwargs):
-
-        pdf = render_to_pdf('accounts/transkript_pdf.html', data)
-        return HttpResponse(pdf, content_type='application/pdf')
-
-#Automaticly downloads to pdf PDF file
-class DownloadPDF(View):
-    def get(self, request, *args, **kwargs):
-
-        pdf = render_to_pdf('accounts/transkript_pdf.html', data)
-
-        response = HttpResponse(pdf, content_type='application/pdf')
-        filename = 'transkript_%s.pdf' %("12341231")
-        content = "attachment; filename='%s'" %(filename)
-        response['Content-Disposition'] = content
-        return response
-
-def transkript_pdf(request):
-    context = {}
-    return render(request, 'accounts/transkript_pdf.html', context)
-
 
 #----------------- period --------------------
 
@@ -1099,3 +1080,4 @@ def period(request):
         'myFilter':myFilter,
     }
     return  render(request, 'accounts/period.html', context)
+

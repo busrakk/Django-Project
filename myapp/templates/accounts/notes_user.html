@@ -8,90 +8,47 @@
     <h5>{{ request.user }}'s Lessons : {{ notes_count }}</h5>
     <div class="col-9">
 
-            <div class="card bg-light ms-3 me-3 mb-3">
-                <div class="card-header">
-                    <div class="col">
-                        <div class="card card-header">
-                            <form method="get">
-
-                                 {{ myFilter.form }}
-
-                                <button class="btn btn-primary" type="submit">Arama</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                {% if notes %}
+         <div class="card bg-light ms-3 me-3 mb-3">
+             {% if notes %}
                 <div class="card-body m-1">
-                    <p class="card-text">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                        <tr>
-                                            <th scope="col">Ders Kodu</th>
-                                            <th scope="col">Ders Adı</th>
-                                            <th scope="col">Vize</th>
-                                            <th scope="col">Final</th>
-                                            <th scope="col">Büt</th>
-                                            <th scope="col">Harf Notu</th>
-                                            <th scope="col">Ortalama</th>
-                                            <th scope="col">Durum</th>
-                                      </tr>
-                                </thead>
-                                <tbody>
-                                   {% for note in notes %}
+                   <p class="card-text">
+                       <div class="table-responsive">
+                           <table class="table table-hover">
+                               <thead>
                                    <tr>
-                                        <td>{{ note.lesson.lcode }}</td>
-                                        <td>{{ note.lesson.lname }}</td>
-                                        <td>{{ note.vise }}</td>
-                                        <td>{{ note.final }}</td>
-                                        <td>{{ note.mkexam }}</td>
-                                        <td>{{ note.lettergrade }}</td>
-                                        <td>{{ note.ort }}</td>
-                                        <td>{{ note.status }}</td>
-                                        <td>
-                                            <button type="button" class="btn me-1" href="{% url 'notes_user' %}" data-bs-toggle="modal" data-bs-target="#myModal{{ i.id }}">
-                                                <i class="fa-solid fa-circle-info"></i>
-                                            </button>
-
-                                        </td>
+                                       <th scope="col">Ders Kodu</th>
+                                       <th scope="col">Ders Adı</th>
+                                       <th scope="col">Vize</th>
+                                       <th scope="col">Final</th>
+                                       <th scope="col">Büt</th>
+                                       <th scope="col">Harf Notu</th>
+                                       <th scope="col">Ortalama</th>
+                                       <th scope="col">Durum</th>
                                    </tr>
+                               </thead>
+                               <tbody>
+                                   {% for note in notes %}
+                                        <tr>
+                                            <td>{{ note.lesson.lcode }}</td>
+                                            <td>{{ note.lesson.lname }}</td>
+                                            <td>{{ note.vise }}</td>
+                                            <td>{{ note.final }}</td>
+                                            <td>{{ note.mkexam }}</td>
+                                            <td>{{ note.lettergrade }}</td>
+                                            <td>{{ note.ort }}</td>
+                                            <td>{{ note.status }}</td>
+                                        </tr>
                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </p>
+                               </tbody>
+                           </table>
+                       </div>
+                   </p>
                 </div>
-            </div>
-                {% else %}
-                    <p></p>
-                    <h5 class="alert alert-primary ms-4 me-4">Ders Kaydı Yok</h5>
-                {% endif %}
-        </div>
-
-    <div class="col-3">
-            <div class="card bg-light ms-1 me-1 mb-1">
-                <h5>{{ request.user }}'s Letter Grade</h5>
-                <div class="row">
-                        <div class="col">
-                            <div class="col-md">
-                                <div class="card text-center text-black mb-3" id="total-department">
-                                    <div class="card-body">
-                                        <p>Total AA : {{ aa }}</p>
-                                        <p>Total BA : {{ ba }}</p>
-                                        <p>Total BB : {{ bb }}</p>
-                                        <p>Total CB : {{ cb }}</p>
-                                        <p>Total CC : {{ cc }}</p>
-                                        <p>Total DC : {{ dc }}</p>
-                                        <p>Total DD : {{ dd }}</p>
-                                        <p>Total FD : {{ fd }}</p>
-                                        <p>Total FF : {{ ff }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
+            {% else %}
+                <p></p>
+                <h5 class="alert alert-primary ms-4 me-4">Ders Kaydı Yok</h5>
+            {% endif %}
+         </div>
     </div>
 </div>
 

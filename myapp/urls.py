@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
     path('register/', views.registerPage, name='register'),
     path('login/', views.loginPage, name='login'),
@@ -44,11 +45,6 @@ urlpatterns = [
     path('delete_student/<str:pk>/', views.deleteStudent, name='delete_student'),
     path('update_student/<str:pk>/', views.updateStudent, name='update_student'),
 
-    #path('department/<str:pk>', views.department, name='department'),
-    #path('create_department/', views.createDepartment, name='create_department'),
-    #path('delete_department/<str:pk>/', views.deleteDepartment, name='delete_department'),
-    #path('update_department/<str:pk>/', views.updateDepartment, name='update_department'),
-
     path('notes_lesson/', views.notesLesson, name='notes_lesson'),
     path('notes_student/', views.notesStudent, name='notes_student'),
     path('notes_period/<str:pk>/', views.notesPeriod, name='notes_period'),
@@ -71,10 +67,8 @@ urlpatterns = [
 
     path('update_all_notes/<str:pk>/', views.updateAllNotes, name='update_all_notes'),
 
+    path('transkript_user/', views.transkriptUser, name='transkript_user'),
     path('transkript/', views.transkript, name='transkript'),
-    path('transkript_pdf/', views.transkript_pdf, name='transkript_pdf'),
-    path('pdf_view/', views.ViewPDF.as_view(), name='pdf_view'),
-    path('pdf_download/', views.DownloadPDF.as_view(), name='pdf_download'),
     path('student_transkript/<str:pk>/', views.studentTranskript, name='student_transkript'),
 
     path('period/', views.period, name='period'),

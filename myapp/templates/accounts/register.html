@@ -15,19 +15,19 @@
             <form method="post" action="">
                 {% csrf_token %}
                 <div class="colm-form">
-                <div class="form-container">
-                    <h1 id="form-title">REGISTER ACCOUNT</h1>
-                    {{ form.username }}
-                    {{ form.email }}
-                    {{ form.password1 }}
-                    {{ form.password2 }}
-                    <button class="btn-login">Register Account</button>
+                    <div class="form-container">
+                        <h1 id="form-title">REGISTER ACCOUNT</h1>
+                        {{ form.username }}
+                        {{ form.email }}
+                        {{ form.password1 }}
+                        {{ form.password2 }}
+                        <button class="btn-login">Register Account</button>
 
-                    {{ form.errors }}
+                        {{ form.errors }}
 
-                    <a href="{% url 'login' %}">Already have an account?</a>
+                        <a href="{% url 'login' %}">Already have an account?</a>
+                    </div>
                 </div>
-            </div>
             </form>
         </div>
     </main>

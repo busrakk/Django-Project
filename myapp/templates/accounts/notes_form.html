@@ -22,21 +22,19 @@
                                 </thead>
                                 <tbody>
                                    {{ formset.management_form }}
-                                    {% for form in formset %}
-                                    <tr>
-                                        <td>{{ form.student }}</td>
+                                   {% for form in formset %}
+                                   <tr>
+                                        <td style="width: 10%">{{ form.student}}</td>
                                         <td style="width:10%">{{ form.vise }}</td>
                                         <td style="width:10%">{{ form.final }}</td>
                                         <td style="width:10%">{{ form.mkexam }}</td>
                                         <td style="width:10%">{{ form.lettergrade }}</td>
                                         <td style="width:10%">{{ form.ort }}</td>
                                         <td style="width:10%">{{ form.status }}</td>
-                                    </tr>
-                                    {% endfor %}
+                                   </tr>
+                                   {% endfor %}
                                 </tbody>
                             </table>
-
-
                     <input type="submit" name="Submit">
                 </form>
             </div>

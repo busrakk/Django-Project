@@ -1,4 +1,3 @@
-import datetime
 
 from django.forms import inlineformset_factory
 from django.http import HttpResponse, HttpResponseRedirect
@@ -25,6 +24,35 @@ from .decorators import unauthenticated_user, allowed_users, admin_only
 # Create your views here.
 
 #-----------------------------------------------------
+
+"""from io import BytesIO
+from django.template.loader import get_template
+from django.views import View
+from xhtml2pdf import pisa"""
+
+"""def render_to_pdf(template_src, context_dict={}):
+    template = get_template(template_src)
+    html = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return None
+
+class ViewPDF(View):
+    def get(self, request, *args, **kwargs):
+        pdf = render_to_pdf('accounts/transkript.html', )
+        return HttpResponse(pdf, content_type='application/pdf')
+
+class DownloadPDF(View):
+    def get(self, request, *args, **kwargs):
+        pdf = render_to_pdf('accounts/transkript.html', )
+
+        response = HttpResponse(pdf, content_type='application/pdf')
+        filename = "Invoice_%s.pdf" %("12341231")
+        content = "attachment; filename='%s'" %(filename)
+        response['Content-Disposition'] = content
+        return response"""
 
 
 
@@ -788,6 +816,27 @@ def createNotes(request):
     context = {'form': form}
     return render(request, 'accounts/notes_form.html', context)
 
+def createAllNotes(request, pk):
+    NotesFormSet = inlineformset_factory(Lesson, Notes, fields=('student', 'lesson', 'vise', 'final', 'mkexam', 'lettergrade', 'ort', 'status'))
+    lesson = Lesson.objects.get(id=pk)
+    lessons = lesson.student.all()
+    notes = lesson.notes_set.all()
+    lessons_total = lessons.count()
+    formset = NotesFormSet(queryset=Notes.objects.none(), instance=lesson)
+    if request.method == 'POST':
+        formset = NotesFormSet(request.POST, instance=lesson)
+        if formset.is_valid():
+            formset.save()
+            return redirect('lessons')
+    context = {
+        'formset':formset,
+        'lessons': lessons,
+        'notes': notes,
+        'lessons_total': lessons_total,
+    }
+    return render(request, 'accounts/notes_form.html', context)
+
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def updateAllNotes(request, pk):
@@ -795,6 +844,7 @@ def updateAllNotes(request, pk):
     lesson = Lesson.objects.get(id=pk)
     lessons = lesson.student.all()
     notes = lesson.notes_set.all()
+    lessons_total = lessons.count()
     formset = NotesFormSet(instance=lesson)
     if request.method == 'POST':
         formset = NotesFormSet(request.POST, instance=lesson)
@@ -805,6 +855,7 @@ def updateAllNotes(request, pk):
         'formset':formset,
         'lessons':lessons,
         'notes':notes,
+        'lessons_total':lessons_total,
     }
     return render(request, 'accounts/notes_form.html', context)
 

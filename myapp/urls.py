@@ -67,6 +67,7 @@ urlpatterns = [
     path('student_notes_create/<str:pk>/', views.studentNotesCreate, name='student_notes_create'),
 
     path('update_all_notes/<str:pk>/', views.updateAllNotes, name='update_all_notes'),
+    path('create_all_notes/<str:pk>/', views.createAllNotes, name='create_all_notes'),
 
     path('transkript_user/', views.transkriptUser, name='transkript_user'),
     path('transkript/', views.transkript, name='transkript'),

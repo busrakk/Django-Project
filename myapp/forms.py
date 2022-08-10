@@ -15,7 +15,8 @@ class StudentForm(ModelForm):
             'num': 'Öğrenci Numarası',
             'name': 'Öğrenci Adı',
             'surname': 'Öğrenci Soyadı',
-            'grade' : 'Öğrenci Sınıfı'
+            'grade' : 'Öğrenci Sınıfı',
+            'profile_pic': 'Profil Fotoğrafı',
         }
     widgets = {
         'num': forms.NumberInput(attrs={'class':'form-control'}),

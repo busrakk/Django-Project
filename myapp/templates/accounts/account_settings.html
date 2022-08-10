@@ -12,31 +12,35 @@
     </style>
 
     <br>
+
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="card bg-light ms-3 me-3 mb-3">
                 <div class="card card-body">
-                <a class="btn btn-warning" href="{% url 'index' %}">Back to Profile</a>
+                <a class="btn btn-warning" href="{% url 'index' %}">Profile Dön</a>
                 <hr>
-                <h3 style="text-align: center">Account Settings</h3>
+                <h3 style="text-align: center">Hesap Ayarları</h3>
                 <hr>
                 <img class="profile-pic" src="{{ request.user.student.profile_pic.url }}">
             </div>
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <div class="card bg-light ms-3 me-3 mb-3">
+                <div class="card card-header">
+                    <h5>Hesap Bilgileri</h5>
+                </div>
                 <div class="card card-body">
 
-                <form method="post" action="" enctype="multipart/form-data">
+                    <form method="post" action="" enctype="multipart/form-data">
 
-                    {% csrf_token %}
-                    {{ form.as_p }}
+                        {% csrf_token %}
+                        {{ form.as_p }}
 
-                    <input class="btn btn-primary" type="submit" name="Update Information">
+                        <input class="btn btn-primary" type="submit" name="Update Information">
 
-                </form>
+                    </form>
 
             </div>
             </div>

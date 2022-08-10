@@ -97,12 +97,12 @@
                                {% for n in notes %}
                                    {% if n.lesson.period.id == i.id %}
                                    <tr>
-                                        <td style="width:25%">{{ n.lesson.lcode }}</td>
-                                        <td style="width:25%">{{ n.lesson.lname }}</td>
+                                        <td style="width:10%">{{ n.lesson.lcode }}</td>
+                                        <td style="width:35%">{{ n.lesson.lname }}</td>
                                         <td style="width:7%">{{ n.lesson.lcredit }}</td>
                                         <td style="width:7%">{{ n.ort }}</td>
                                         <td style="width:7%">{{ n.lettergrade }}</td>
-                                        <td style="width:10%">{{ n.status }}</td>
+                                        <td style="width:7%">{{ n.status }}</td>
                                    </tr>
                                    {% endif %}
                                {% endfor %}

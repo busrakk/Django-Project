@@ -18,21 +18,18 @@
 </head>
 <body>
     {% include 'accounts/navbar.html' %}
-    <div class="container-fluid">
-        <div class="row flex-nowrap">
-            {% include 'accounts/sidebar.html' %}
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                {% include 'accounts/sidebar.html' %}
 
-            <div class="col py-3">
-                {% block content %}
+                <div class="col py-3">
+                    {% block content %}
 
-                {% endblock content %}
+                    {% endblock content %}
+                </div>
             </div>
         </div>
-    </div>
-
-
     {% include 'accounts/footer.html' %}
-
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

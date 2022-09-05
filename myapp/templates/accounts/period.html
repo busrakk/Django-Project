@@ -10,21 +10,8 @@
                 <a class="btn  me-5" href="{% url 'lesson_add' %}">
                     <h5>Ders Ekle: <i class="fa-solid fa-circle-plus"></i></h5>
                 </a>
-                <!--
-                    <div class="card-header">
-                        <div class="col">
-                            <div class="card card-header">
-                                <form method="get">
 
-                                     myFilter.form }}
-
-                                    <button class="btn btn-primary" type="submit">Arama</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                -->
-                        <div class="card-body m-1">
+                    <div class="card-body m-1">
                         <p class="card-text">
                             <div class="table-responsive">
 
@@ -100,25 +87,25 @@
                                           <div class="tab-pane fade active show" id="donem{{ i.id }}" role="tabpanel">
                                             <table class="table table-hover">
                                                 <thead>
-                                                              <tr>
-                                                                  <th scope="col">Ders Kodu</th>
-                                                                  <th scope="col">Ders Adı</th>
-                                                                  <th scope="col">Ders Kredisi</th>
-                                                                  <th scope="col">ACTION</th>
-                                                              </tr>
-                                                            </thead>
+                                                    <tr>
+                                                        <th scope="col">Ders Kodu</th>
+                                                        <th scope="col">Ders Adı</th>
+                                                        <th scope="col">Ders Kredisi</th>
+                                                        <th scope="col">ACTION</th>
+                                                    </tr>
+                                                </thead>
                                                 <tbody>
-                                                              {% for l in lesson %}
-                                                                    {% if l.period.id == i.id %}
-                                                                          <tr>
-                                                                              <td style="width:20%">{{ l.lcode }}</td>
-                                                                              <td style="width:20%">{{ l.lname }}</td>
-                                                                              <td style="width:20%">{{ l.lcredit }}</td>
-                                                                              <td style="width:40%">
+                                                    {% for l in lesson %}
+                                                        {% if l.period.id == i.id %}
+                                                             <tr>
+                                                                 <td style="width:20%">{{ l.lcode }}</td>
+                                                                 <td style="width:20%">{{ l.lname }}</td>
+                                                                 <td style="width:20%">{{ l.lcredit }}</td>
+                                                                 <td style="width:40%">
 
-                                                                                <button type="button" class="btn me-1" href="{% url 'lesson_view' l.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{ l.id }}">
-                                                                                    <i class="fa-solid fa-circle-info"></i>
-                                                                                </button>
+                                                                     <button type="button" class="btn me-1" href="{% url 'lesson_view' l.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{ l.id }}">
+                                                                         <i class="fa-solid fa-circle-info"></i>
+                                                                     </button>
 
                                                                                 <!-- model view lesson -->
 
@@ -185,11 +172,11 @@
                                                                                     <i class="fa-solid fa-user-pen"></i>
                                                                                 </a>
 
-                                                                              </td>
-                                                                          </tr>
-                                                                    {% endif %}
-                                                              {% endfor %}
-                                                            </tbody>
+                                                                 </td>
+                                                             </tr>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </tbody>
                                             </table>
                                           </div>
                                         {% endif %}
@@ -898,7 +885,7 @@
 
                             </div>
                         </p>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>

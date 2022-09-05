@@ -23,41 +23,6 @@ from .decorators import unauthenticated_user, allowed_users, admin_only
 
 # Create your views here.
 
-#-----------------------------------------------------
-
-"""from io import BytesIO
-from django.template.loader import get_template
-from django.views import View
-from xhtml2pdf import pisa"""
-
-"""def render_to_pdf(template_src, context_dict={}):
-    template = get_template(template_src)
-    html = template.render(context_dict)
-    result = BytesIO()
-    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), content_type='application/pdf')
-    return None
-
-class ViewPDF(View):
-    def get(self, request, *args, **kwargs):
-        pdf = render_to_pdf('accounts/transkript.html', )
-        return HttpResponse(pdf, content_type='application/pdf')
-
-class DownloadPDF(View):
-    def get(self, request, *args, **kwargs):
-        pdf = render_to_pdf('accounts/transkript.html', )
-
-        response = HttpResponse(pdf, content_type='application/pdf')
-        filename = "Invoice_%s.pdf" %("12341231")
-        content = "attachment; filename='%s'" %(filename)
-        response['Content-Disposition'] = content
-        return response"""
-
-
-
-#------------------------------------------------------
-
 # -------------- signup & login ------------
 @unauthenticated_user
 def registerPage(request):
@@ -67,27 +32,6 @@ def registerPage(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
-
-            """if form.password1 == form.password2:
-                if User.objects.filter(username=form.username).exists():
-                    messages.info(request, 'Username is already taken')
-                    return redirect('register')
-                elif User.objects.filter(email=form.email).exists():
-                    messages.info(request, 'Email is already taken')
-                    return redirect('register')
-                else:
-                    user = form.save()
-            else:
-                messages.info(request, 'Both passwords are not matching')
-                return redirect('register')"""
-            """user = form.save()
-            username = form.cleaned_data.get('username')
-            group = Group.objects.get(name='student')
-            user.groups.add(group)
-            Student.objects.create(
-                user=user,
-                name=user.username,
-            )"""
             messages.success(request, 'Account was created for' + username)
 
             return redirect('login')
@@ -147,31 +91,10 @@ def index(request):
 @allowed_users(allowed_roles=['student'])
 def userPage(request):
     notes = request.user.student.notes_set.all()
-
-
     notes_count = notes.count()
-
-    aa = notes.filter(lettergrade='AA').count()
-    ba = notes.filter(lettergrade='BA').count()
-    bb = notes.filter(lettergrade='BB').count()
-    cb = notes.filter(lettergrade='CB').count()
-    cc = notes.filter(lettergrade='CC').count()
-    dc = notes.filter(lettergrade='DC').count()
-    dd = notes.filter(lettergrade='DD').count()
-    fd = notes.filter(lettergrade='FD').count()
-    ff = notes.filter(lettergrade='FF').count()
 
     context= {
         'notes':notes,
-        'aa': aa,
-        'ba': ba,
-        'bb': bb,
-        'cb': cb,
-        'cc': cc,
-        'dc': dc,
-        'dd': dd,
-        'fd': fd,
-        'ff': ff,
         'notes_count':notes_count,
         }
     return render(request, 'accounts/user.html', context)
@@ -219,16 +142,6 @@ def notesUser(request):
     notes = request.user.student.notes_set.all()
     notes_count = notes.count()
 
-    aa = notes.filter(lettergrade='AA').count()
-    ba = notes.filter(lettergrade='BA').count()
-    bb = notes.filter(lettergrade='BB').count()
-    cb = notes.filter(lettergrade='CB').count()
-    cc = notes.filter(lettergrade='CC').count()
-    dc = notes.filter(lettergrade='DC').count()
-    dd = notes.filter(lettergrade='DD').count()
-    fd = notes.filter(lettergrade='FD').count()
-    ff = notes.filter(lettergrade='FF').count()
-
     myFilter = NotesFilter(request.GET, queryset=notes)
     notes = myFilter.qs
 
@@ -236,15 +149,6 @@ def notesUser(request):
         'notes':notes,
         'notes_count':notes_count,
         'myFilter':myFilter,
-        'aa': aa,
-        'ba': ba,
-        'bb': bb,
-        'cb': cb,
-        'cc': cc,
-        'dc': dc,
-        'dd': dd,
-        'fd': fd,
-        'ff': ff,
     }
     return render(request, 'accounts/notes_user.html', context)
 
@@ -1042,50 +946,6 @@ def studentNotesCreate(request, pk):
 
 #------------- Transkript -------------
 
-"""@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def transkript(request):
-    students = Student.objects.all()
-    lessons = Lesson.objects.all()
-    notes = Notes.objects.all()
-
-    total_students = students.count()
-    total_lesson = lessons.count()
-    total_notes = notes.count()
-
-    myFilter = StudentFilter(request.GET, queryset=students)
-    students = myFilter.qs
-
-    aa = notes.filter(lettergrade='AA').count()
-    ba = notes.filter(lettergrade='BA').count()
-    bb = notes.filter(lettergrade='BB').count()
-    cb = notes.filter(lettergrade='CB').count()
-    cc = notes.filter(lettergrade='CC').count()
-    dc = notes.filter(lettergrade='DC').count()
-    dd = notes.filter(lettergrade='DD').count()
-    fd = notes.filter(lettergrade='FD').count()
-    ff = notes.filter(lettergrade='FF').count()
-
-    context = {
-        'students': students,
-        'lessons': lessons,
-        'notes':notes,
-        'total_students': total_students,
-        'total_lesson': total_lesson,
-        'total_notes':total_notes,
-        'myFilter': myFilter,
-        'aa': aa,
-        'ba': ba,
-        'bb': bb,
-        'cb': cb,
-        'cc': cc,
-        'dc': dc,
-        'dd': dd,
-        'fd': fd,
-        'ff': ff,
-    }
-    return render(request, 'accounts/transkript.html', context)"""
-
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
 def transkript(request):
@@ -1121,15 +981,6 @@ def studentTranskript(request, pk):
         'period':period,
     }
     return  render(request, 'accounts/transkript_student.html', context)
-
-"""@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def transkriptView(request,pk):
-    student = Student.objects.get(id=pk)
-
-    return HttpResponseRedirect(reverse('student_notes_view'))"""
-
-
 
 #----------------- period --------------------
 

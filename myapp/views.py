@@ -335,74 +335,6 @@ def lessonPeriodAdd(request):
 
 #--------------- end of lesson model -------------
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def lessonDeletePage(request):
-    lessons = Lesson.objects.all()
-    lesson_count = lessons.count()
-
-    myFilter = LessonFilter(request.GET, queryset=lessons)
-    lessons = myFilter.qs
-
-    context = {
-        'lessons': lessons,
-        'lesson_count':lesson_count,
-        'myFilter':myFilter,
-    }
-    return render(request, 'accounts/lesson_delete_page.html', context)
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def lessonUpdatePage(request):
-    lesson = Lesson.objects.all()
-    lesson_count = lesson.count()
-
-    myFilter = LessonFilter(request.GET, queryset=lesson)
-    lesson = myFilter.qs
-
-    context = {
-        'lesson': lesson,
-        'lesson_count':lesson_count,
-        'myFilter':myFilter,
-    }
-    return render(request, 'accounts/lesson_update_page.html', context)
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def createLesson(request):
-    form = LessonForm()
-    if request.method == 'POST':
-        form = LessonForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('lessons')
-    context = {'form':form}
-    return render(request, 'accounts/lesson_form.html', context)
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def updateLesson(request,pk):
-    lesson = Lesson.objects.get(id=pk)
-    form = LessonForm(instance=lesson)
-
-    if request.method == 'POST':
-        form = LessonForm(request.POST, instance=lesson)
-        if form.is_valid():
-            form.save()
-            return  redirect('lesson_update_page')
-    context = {'form':form}
-    return render(request, 'accounts/lesson_form.html', context)
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def deleteLesson(request, pk):
-    lesson = Lesson.objects.get(id=pk)
-    if request.method == "POST":
-        lesson.delete()
-        return redirect('lesson_delete_page')
-    context = {'lesson':lesson}
-    return render(request, 'accounts/lesson_delete.html', context)
-
 #--- student ---
 
 @login_required(login_url='login')
@@ -491,76 +423,6 @@ def studentLesson(request,pk):
 
 #--------------- end of student model -------------
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def studentDeletePage(request):
-    students = Student.objects.all()
-    student_count = students.count()
-
-    myFilter = StudentFilter(request.GET, queryset=students)
-    students = myFilter.qs
-
-    context = {
-        'students': students,
-        'student_count':student_count,
-        'myFilter':myFilter,
-    }
-    return render(request, 'accounts/student_delete_page.html', context)
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def studentUpdatePage(request):
-    students = Student.objects.all()
-    student_count = students.count()
-
-    myFilter = StudentFilter(request.GET, queryset=students)
-    students = myFilter.qs
-
-    context = {
-        'students': students,
-        'student_count':student_count,
-        'myFilter':myFilter,
-    }
-    return render(request, 'accounts/student_view.html', context)
-
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def createStudent(request):
-    form = StudentForm
-    if request.method == 'POST':
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('student')
-    context = {'form':form}
-    return render(request, 'accounts/student_form.html', context)
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def deleteStudent(request, pk):
-    student = Student.objects.get(id=pk)
-    if request.method == "POST":
-        student.delete()
-        return redirect('student_delete_page')
-    context = {'student':student}
-    return render(request, 'accounts/student_delete.html', context)
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def updateStudent(request,pk):
-    student = Student.objects.get(id=pk)
-    form = StudentForm(instance=student)
-
-    if request.method == 'POST':
-        form = StudentForm(request.POST, instance=student)
-        if form.is_valid():
-            form.save()
-            return  redirect('student_update_page')
-    context = {'form':form}
-    return render(request, 'accounts/student_form.html', context)
-
-
 #--- notes ---
 
 @login_required(login_url='login')
@@ -582,21 +444,6 @@ def notesPeriod(request, pk):
     }
     return render(request, 'accounts/notes_period.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def notesLesson(request):
-    lessons = Lesson.objects.all()
-    lessons_count = lessons.count()
-
-    myFilter = LessonFilter(request.GET, queryset=lessons)
-    lessons = myFilter.qs
-
-    context = {
-        'lessons':lessons,
-        'lessons_count': lessons_count,
-        'myFilter': myFilter,
-    }
-    return render(request, 'accounts/notes_lesson.html', context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
@@ -631,81 +478,6 @@ def notesCreate(request):
         'myFilter': myFilter,
     }
     return render(request, 'accounts/notes_create.html', context)
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def notesUpdate(request):
-    notes = Notes.objects.all()
-    student = Student.objects.all()
-
-    notes_count = notes.count()
-    student_count = student.count()
-
-    myFilter = StudentFilter(request.GET, queryset=student)
-    student = myFilter.qs
-
-    context = {
-        'student':student,
-        'student_count':student_count,
-        'notes':notes,
-        'notes_count':notes_count,
-        'myFilter':myFilter,
-    }
-    return render(request, 'accounts/notes_update_page.html', context)
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def notesDelete(request):
-    notes = Notes.objects.all()
-    student = Student.objects.all()
-
-    notes_count = notes.count()
-    student_count = student.count()
-
-    myFilter = StudentFilter(request.GET, queryset=student)
-    student = myFilter.qs
-
-    context = {
-        'student':student,
-        'student_count':student_count,
-        'notes':notes,
-        'notes_count':notes_count,
-        'myFilter':myFilter,
-    }
-    return render(request, 'accounts/notes_delete_page.html', context)
-
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def notesDeletePage(request):
-    notes = Notes.objects.all()
-    notes_count = notes.count()
-
-    myFilter = NotesFilter(request.GET, queryset=notes)
-    notes = myFilter.qs
-
-    context = {
-        'notes': notes,
-        'notes_count':notes_count,
-        'myFilter':myFilter,
-    }
-    return render(request, 'accounts/notes_delete_page.html', context)
-
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def notesUpdatePage(request):
-    notes = Notes.objects.all()
-    notes_count = notes.count()
-
-    myFilter = NotesFilter(request.GET, queryset=notes)
-    notes = myFilter.qs
-
-    context = {
-        'notes': notes,
-        'notes_count':notes_count,
-        'myFilter':myFilter,
-    }
-    return render(request, 'accounts/notes_update_page.html', context)
 
 
 @login_required(login_url='login')

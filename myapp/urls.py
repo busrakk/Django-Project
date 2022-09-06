@@ -41,10 +41,6 @@ urlpatterns = [
     path('update_notes/<str:pk>/', views.updateNotes, name='update_notes'),
     path('delete_notes/<str:pk>/', views.deleteNotes, name='delete_notes'),
 
-    path('student_notes_delete/<str:pk>/', views.studentNotesDelete, name='student_notes_delete'),
-    path('student_notes_update/<str:pk>/', views.studentNotesUpdate, name='student_notes_update'),
-    path('student_notes_view/<str:pk>/', views.studentNotesView, name='student_notes_view'),
-
     path('update_all_notes/<str:pk>/', views.updateAllNotes, name='update_all_notes'),
     path('create_all_notes/<str:pk>/', views.createAllNotes, name='create_all_notes'),
 

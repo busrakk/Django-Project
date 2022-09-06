@@ -560,44 +560,6 @@ def deleteNotes(request,pk):
     context = {'notes': notes}
     return render(request, 'accounts/notes_delete.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def studentNotesDelete(request, pk):
-    student = Student.objects.get(id=pk)
-    notes = student.notes_set.all()
-
-    aa = notes.filter(lettergrade='AA').count()
-    ba = notes.filter(lettergrade='BA').count()
-    bb = notes.filter(lettergrade='BB').count()
-    cb = notes.filter(lettergrade='CB').count()
-    cc = notes.filter(lettergrade='CC').count()
-    dc = notes.filter(lettergrade='DC').count()
-    dd = notes.filter(lettergrade='DD').count()
-    fd = notes.filter(lettergrade='FD').count()
-    ff = notes.filter(lettergrade='FF').count()
-
-    notes_count = notes.count()
-
-    # Student filter
-    myFilter = NotesFilter(request.GET, queryset=notes)
-    notes = myFilter.qs
-
-    context = {
-        'student':student,
-        'notes':notes,
-        'aa': aa,
-        'ba': ba,
-        'bb': bb,
-        'cb': cb,
-        'cc': cc,
-        'dc': dc,
-        'dd': dd,
-        'fd': fd,
-        'ff': ff,
-        'notes_count':notes_count,
-        'myFilter':myFilter,
-    }
-    return  render(request, 'accounts/student_notes_delete.html', context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
@@ -677,44 +639,6 @@ def studentNotesView(request, pk):
     }
     return  render(request, 'accounts/student_notes_view.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
-def studentNotesCreate(request, pk):
-    student = Student.objects.get(id=pk)
-    notes = student.notes_set.all()
-
-    aa = notes.filter(lettergrade='AA').count()
-    ba = notes.filter(lettergrade='BA').count()
-    bb = notes.filter(lettergrade='BB').count()
-    cb = notes.filter(lettergrade='CB').count()
-    cc = notes.filter(lettergrade='CC').count()
-    dc = notes.filter(lettergrade='DC').count()
-    dd = notes.filter(lettergrade='DD').count()
-    fd = notes.filter(lettergrade='FD').count()
-    ff = notes.filter(lettergrade='FF').count()
-
-    notes_count = notes.count()
-
-    # Student filter
-    myFilter = NotesFilter(request.GET, queryset=notes)
-    notes = myFilter.qs
-
-    context = {
-        'student':student,
-        'notes':notes,
-        'aa': aa,
-        'ba': ba,
-        'bb': bb,
-        'cb': cb,
-        'cc': cc,
-        'dc': dc,
-        'dd': dd,
-        'fd': fd,
-        'ff': ff,
-        'notes_count':notes_count,
-        'myFilter':myFilter,
-    }
-    return  render(request, 'accounts/student_notes_create.html', context)
 
 #------------- Transkript -------------
 
